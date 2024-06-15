@@ -118,7 +118,7 @@ class _SignInPageState extends State<SignInPage> {
                 decoration: InputDecoration(
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10)),
-                    hintText: 'User ID or E-mail',
+                    hintText: 'E-mail',
                     hintStyle:
                         const TextStyle(color: Colors.grey, fontSize: 20)),
               ),
@@ -181,7 +181,12 @@ class _SignInPageState extends State<SignInPage> {
                   //   );
                   // },
                   onPressed: () {
-                    _completeLogin(context);
+                      //SIGN UP LINK
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => HomePage()));
+
                   },
                   style: ElevatedButton.styleFrom(
                     fixedSize: const Size(500, 64),
@@ -239,57 +244,6 @@ class _SignInPageState extends State<SignInPage> {
                 ),
               ],
             ),
-            // const Row(
-            //   mainAxisAlignment: MainAxisAlignment.center,
-            //   children: [Text('Sign Up with', style: TextStyle(fontSize: 18))],
-            // ),
-            // const SizedBox(height: 5),
-            // Padding(
-            //   padding: const EdgeInsets.all(16),
-            //   child: Row(
-            //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            //     children: [
-            //       Container(
-            //         padding: const EdgeInsets.all(20),
-            //         decoration: BoxDecoration(
-            //           border: Border.all(color: Colors.white),
-            //           borderRadius: BorderRadius.circular(16),
-            //           color: const Color.fromRGBO(255, 255, 255, 1),
-            //         ),
-            //         child: Image.asset(
-            //           'assets/images/Google.png',
-            //           height: 40,
-            //         ),
-            //       ),
-                  // Container(
-                  //   padding: const EdgeInsets.all(20),
-                  //   constraints: const BoxConstraints(
-                  //       maxWidth: 90), // Set max width here
-                  //   decoration: BoxDecoration(
-                  //     border: Border.all(color: Colors.white),
-                  //     borderRadius: BorderRadius.circular(16),
-                  //     color: const Color.fromRGBO(255, 255, 255, 1),
-                  //   ),
-                  //   child: Image.asset(
-                  //     'assets/images/SpaceX.png',
-                  //     height: 40,
-                  //   ),
-                  // ),
-                  // Container(
-                  //   padding: const EdgeInsets.all(20),
-                  //   decoration: BoxDecoration(
-                  //     border: Border.all(color: Colors.white),
-                  //     borderRadius: BorderRadius.circular(16),
-                  //     color: const Color.fromRGBO(255, 255, 255, 1),
-                  //   ),
-                  //   child: Image.asset(
-                  //     'assets/images/Nasa.png',
-                  //     height: 40,
-                  //   ),
-                  // ),
-            //     ],
-            //   ),
-            // ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(
@@ -329,11 +283,11 @@ class _SignInPageState extends State<SignInPage> {
 }
 
 
-void _completeLogin(BuildContext context) {
-  Navigator.pushReplacement<void, void>(
-    context,
-    MaterialPageRoute<void>(
-      builder: (BuildContext context) => HomePage(),
-    ),
-  );
-}
+// void _completeLogin(BuildContext context) {
+//   Navigator.pushReplacement<void, void>(
+//     context,
+//     MaterialPageRoute<void>(
+//       builder: (BuildContext context) => HomePage(),
+//     ),
+//   );
+// }

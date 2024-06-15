@@ -12,6 +12,8 @@ class NavBar extends StatefulWidget {
 }
 
 class NavBarState extends State<NavBar> {
+
+
   var currentIndex = 0;
 
   @override

@@ -14,7 +14,7 @@ class Booking extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 255, 255, 255),
         title: const Text(
-          'Booking Tour',
+          'Booking Room',
           style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
         ),
         iconTheme: IconThemeData(color: Colors.black),
@@ -46,8 +46,9 @@ class Booking extends StatelessWidget {
                     children: [
                       // image
                       Image.asset(
-                        'assets/images/elysiumbooking.png',
-                        width: displayWidth,
+                        'assets/images/gallery1.jpg',
+                        width: 400,
+                        height: 100,
                         fit: BoxFit.cover,
                       ),
 
@@ -67,7 +68,7 @@ class Booking extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Container(
-                                      width: displayWidth * .5,
+                                      width: displayWidth * .8,
                                       padding: const EdgeInsets.only(
                                         left: 16,
                                       ),
@@ -87,7 +88,7 @@ class Booking extends StatelessWidget {
                                         decoration: InputDecoration(
                                           border: InputBorder.none,
                                           hintText:
-                                              'User Name', // Placeholder text
+                                              'Tên', // Placeholder text
                                           hintStyle: TextStyle(
                                             color:
                                                 Colors.black.withOpacity(0.5),
@@ -100,7 +101,7 @@ class Booking extends StatelessWidget {
                                     ),
                                     const SizedBox(height: 10),
                                     Container(
-                                      width: displayWidth * .5,
+                                      width: displayWidth * .8,
                                       padding: const EdgeInsets.only(
                                         left: 16,
                                       ),
@@ -120,7 +121,7 @@ class Booking extends StatelessWidget {
                                         decoration: InputDecoration(
                                           border: InputBorder.none,
                                           hintText:
-                                              'User Name', // Placeholder text
+                                              'SĐT', // Placeholder text
                                           hintStyle: TextStyle(
                                             color:
                                                 Colors.black.withOpacity(0.5),
@@ -133,7 +134,7 @@ class Booking extends StatelessWidget {
                                     ),
                                     const SizedBox(height: 10),
                                     Container(
-                                      width: displayWidth * .5,
+                                      width: displayWidth * .8,
                                       padding: const EdgeInsets.only(
                                         left: 16,
                                       ),
@@ -153,7 +154,7 @@ class Booking extends StatelessWidget {
                                         decoration: InputDecoration(
                                           border: InputBorder.none,
                                           hintText:
-                                              'User Name', // Placeholder text
+                                              'E-mail', // Placeholder text
                                           hintStyle: TextStyle(
                                             color:
                                                 Colors.black.withOpacity(0.5),
@@ -166,7 +167,7 @@ class Booking extends StatelessWidget {
                                     ),
                                     const SizedBox(height: 10),
                                     Container(
-                                      width: displayWidth * .5,
+                                      width: displayWidth * .8,
                                       padding: const EdgeInsets.only(
                                         left: 16,
                                       ),
@@ -186,7 +187,7 @@ class Booking extends StatelessWidget {
                                         decoration: InputDecoration(
                                           border: InputBorder.none,
                                           hintText:
-                                              'User Name', // Placeholder text
+                                              'CCCD', // Placeholder text
                                           hintStyle: TextStyle(
                                             color:
                                                 Colors.black.withOpacity(0.5),
@@ -195,97 +196,6 @@ class Booking extends StatelessWidget {
                                             fontWeight: FontWeight.w400,
                                           ),
                                         ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-
-                            //text after the text fields
-
-                            const Padding(
-                              padding: EdgeInsets.all(16.0),
-                              child: SizedBox(
-                                width: 96,
-                                height: 150,
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text.rich(
-                                      TextSpan(
-                                        children: [
-                                          TextSpan(
-                                            text: 'Departure\n',
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 16,
-                                              fontFamily: 'Inter',
-                                              fontWeight: FontWeight.w500,
-                                            ),
-                                          ),
-                                          TextSpan(
-                                            text: '27th Aug',
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 14,
-                                              fontFamily: 'Inter',
-                                              fontWeight: FontWeight.w400,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    SizedBox(height: 20),
-                                    Text.rich(
-                                      TextSpan(
-                                        children: [
-                                          TextSpan(
-                                            text: 'Arrival\n',
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 16,
-                                              fontFamily: 'Inter',
-                                              fontWeight: FontWeight.w500,
-                                            ),
-                                          ),
-                                          TextSpan(
-                                            text: '25th Mar',
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 14,
-                                              fontFamily: 'Inter',
-                                              fontWeight: FontWeight.w400,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    SizedBox(height: 20),
-                                    Text.rich(
-                                      TextSpan(
-                                        children: [
-                                          TextSpan(
-                                            text: '04\n',
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 16,
-                                              fontFamily: 'Inter',
-                                              fontWeight: FontWeight.w500,
-                                            ),
-                                          ),
-                                          TextSpan(
-                                            text: 'Passengers',
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 14,
-                                              fontFamily: 'Inter',
-                                              fontWeight: FontWeight.w400,
-                                            ),
-                                          ),
-                                        ],
                                       ),
                                     ),
                                   ],
@@ -310,7 +220,7 @@ class Booking extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const Text(
-                        'Ticket Prices',
+                        'Giá vé',
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 20,
@@ -330,7 +240,7 @@ class Booking extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'For one ticket',
+                                    'Giá 1 vé',
                                     style: TextStyle(
                                       color: Colors.black,
                                       fontSize: 14,
@@ -340,7 +250,7 @@ class Booking extends StatelessWidget {
                                   ),
                                   SizedBox(height: 8),
                                   Text(
-                                    'No of tickets',
+                                    'Số lượng',
                                     style: TextStyle(
                                       color: Colors.black,
                                       fontSize: 14,
@@ -350,7 +260,7 @@ class Booking extends StatelessWidget {
                                   ),
                                   SizedBox(height: 8),
                                   Text(
-                                    'Space Tax',
+                                    'Thuế',
                                     style: TextStyle(
                                       color: Colors.black,
                                       fontSize: 14,
@@ -407,7 +317,7 @@ class Booking extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  'Total',
+                                  'Tổng',
                                   style: TextStyle(
                                     color: Colors.black,
                                     fontSize: 16,
@@ -438,102 +348,102 @@ class Booking extends StatelessWidget {
               const SizedBox(height: 150),
             ],
           ),
-          Positioned(
-            left: 0,
-            right: 0,
-            bottom: 0,
-            child: Container(
-              height: 120,
-              padding: EdgeInsets.all(displayWidth * .05),
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    Color.fromARGB(239, 0, 32, 50),
-                    Color.fromARGB(230, 150, 168, 255),
-                  ],
-                  begin: Alignment.centerLeft,
-                  end: Alignment.centerRight,
-                ),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  // Cancer Button
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const NavBar()));
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
-                      minimumSize: Size(displayWidth * .44, displayWidth * .16),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(50.0),
-                        side: const BorderSide(
-                            color: Color.fromARGB(255, 0, 73, 255)),
-                      ),
-                    ),
-                    child: const Text(
-                      'Cancel',
-                      style: TextStyle(
-                          color: Color.fromARGB(255, 0, 73, 255),
-                          fontSize: 16,
-                          fontWeight: FontWeight.w800),
-                    ),
-                  ),
-
-                  // Book Your Tour Button (Gradient Button)
-                  InkWell(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const Payment()));
-                    },
-                    child: Container(
-                      decoration: BoxDecoration(
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(0.2),
-                            spreadRadius: 2,
-                            blurRadius: 4,
-                            offset: const Offset(0, 2),
-                          ),
-                        ],
-                        gradient: const LinearGradient(
-                          colors: [
-                            Color.fromARGB(255, 0, 73, 255),
-                            Color.fromARGB(255, 162, 221, 255),
-                          ],
-                          begin: Alignment.centerLeft,
-                          end: Alignment.centerRight,
-                        ),
-                        borderRadius: BorderRadius.circular(50.0),
-                      ),
-                      width: displayWidth * 0.44,
-                      height: displayWidth * 0.16,
-                      padding: EdgeInsets.symmetric(
-                        horizontal: displayWidth * 0.1,
-                        vertical: displayWidth * 0.04,
-                      ),
-                      child: const Center(
-                        child: Text(
-                          'Pay',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
+          // Positioned(
+          //   left: 0,
+          //   right: 0,
+          //   bottom: 0,
+          //   child: Container(
+          //     height: 120,
+          //     padding: EdgeInsets.all(displayWidth * .05),
+          //     decoration: const BoxDecoration(
+          //       gradient: LinearGradient(
+          //         colors: [
+          //           Color.fromARGB(239, 0, 32, 50),
+          //           Color.fromARGB(230, 150, 168, 255),
+          //         ],
+          //         begin: Alignment.centerLeft,
+          //         end: Alignment.centerRight,
+          //       ),
+          //     ),
+          //     child: Row(
+          //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //       children: [
+          //         // Cancer Button
+          //         ElevatedButton(
+          //           onPressed: () {
+          //             Navigator.push(
+          //                 context,
+          //                 MaterialPageRoute(
+          //                     builder: (context) => const NavBar()));
+          //           },
+          //           style: ElevatedButton.styleFrom(
+          //             backgroundColor: Colors.white,
+          //             minimumSize: Size(displayWidth * .44, displayWidth * .16),
+          //             shape: RoundedRectangleBorder(
+          //               borderRadius: BorderRadius.circular(50.0),
+          //               side: const BorderSide(
+          //                   color: Color.fromARGB(255, 0, 73, 255)),
+          //             ),
+          //           ),
+          //           child: const Text(
+          //             'Cancel',
+          //             style: TextStyle(
+          //                 color: Color.fromARGB(255, 0, 73, 255),
+          //                 fontSize: 16,
+          //                 fontWeight: FontWeight.w800),
+          //           ),
+          //         ),
+          //
+          //         // Book Your Tour Button (Gradient Button)
+          //         InkWell(
+          //           onTap: () {
+          //             Navigator.push(
+          //                 context,
+          //                 MaterialPageRoute(
+          //                     builder: (context) => const Payment()));
+          //           },
+          //           child: Container(
+          //             decoration: BoxDecoration(
+          //               boxShadow: [
+          //                 BoxShadow(
+          //                   color: Colors.black.withOpacity(0.2),
+          //                   spreadRadius: 2,
+          //                   blurRadius: 4,
+          //                   offset: const Offset(0, 2),
+          //                 ),
+          //               ],
+          //               gradient: const LinearGradient(
+          //                 colors: [
+          //                   Color.fromARGB(255, 0, 73, 255),
+          //                   Color.fromARGB(255, 162, 221, 255),
+          //                 ],
+          //                 begin: Alignment.centerLeft,
+          //                 end: Alignment.centerRight,
+          //               ),
+          //               borderRadius: BorderRadius.circular(50.0),
+          //             ),
+          //             width: displayWidth * 0.44,
+          //             height: displayWidth * 0.16,
+          //             padding: EdgeInsets.symmetric(
+          //               horizontal: displayWidth * 0.1,
+          //               vertical: displayWidth * 0.04,
+          //             ),
+          //             child: const Center(
+          //               child: Text(
+          //                 'Pay',
+          //                 style: TextStyle(
+          //                   color: Colors.white,
+          //                   fontSize: 16,
+          //                   fontWeight: FontWeight.bold,
+          //                 ),
+          //               ),
+          //             ),
+          //           ),
+          //         ),
+          //       ],
+          //     ),
+          //   ),
+          // ),
         ],
       ),
     );
