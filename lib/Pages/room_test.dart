@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:test_footer/controller.dart';
+import '../controller.dart';
 import '/pages/booking_page.dart';
 import '/pages/bottom_navbar.dart';
 
@@ -194,13 +194,13 @@ class _ElysiumColonyState extends State<ElysiumColony> {
                           Row(
                             children: [
                               SizedBox(
-                                width: 100,
-                                height: 60,
+                                width: 60,
+                                height: 100,
                                 child: Stack(
                                   children: [
                                     Container(
                                       width: 60,
-                                      height: 60,
+                                      height: 100,
                                       decoration: ShapeDecoration(
                                         color: const Color(0xFF3951EE),
                                         shape: RoundedRectangleBorder(
@@ -226,7 +226,7 @@ class _ElysiumColonyState extends State<ElysiumColony> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    '2 Giường ngủ',
+                                    '7 months',
                                     style: TextStyle(
                                       color: Colors.black,
                                       fontSize: 14,
@@ -237,7 +237,7 @@ class _ElysiumColonyState extends State<ElysiumColony> {
                                   ),
                                   SizedBox(height: 3),
                                   Text(
-                                    '1 Phòng khách',
+                                    '24,600 mph',
                                     style: TextStyle(
                                       color: Colors.black,
                                       fontSize: 14,
@@ -276,13 +276,13 @@ class _ElysiumColonyState extends State<ElysiumColony> {
                             children: [
                               SizedBox(
                                 width: 60,
-                                height: 60,
+                                height: 100,
                                 child: Stack(
                                   children: [
                                     // Ratings Container
                                     Container(
                                       width: 60,
-                                      height: 60,
+                                      height: 100,
                                       decoration: ShapeDecoration(
                                         color: const Color(0xFF3951EE),
                                         shape: RoundedRectangleBorder(
@@ -307,6 +307,38 @@ class _ElysiumColonyState extends State<ElysiumColony> {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
+                                  // Text(
+                                  //   '4.5 / 5.0',
+                                  //   style: TextStyle(
+                                  //     color: Colors.black,
+                                  //     fontSize: 18,
+                                  //     fontFamily: 'Inter',
+                                  //     fontWeight: FontWeight.w700,
+                                  //     height: 1.10,
+                                  //   ),
+                                  // ),
+                                  // SizedBox(height: 3),
+                                  // Text(
+                                  //   '5 643 Reviews',
+                                  //   style: TextStyle(
+                                  //     color: Colors.black,
+                                  //     fontSize: 14,
+                                  //     fontFamily: 'Inter',
+                                  //     fontWeight: FontWeight.w500,
+                                  //     height: 1.10,
+                                  //   ),
+                                  // ),
+                                  // SizedBox(height: 3),
+                                  // Text(
+                                  //   '2 465 Saves',
+                                  //   style: TextStyle(
+                                  //     color: Colors.black,
+                                  //     fontSize: 14,
+                                  //     fontFamily: 'Inter',
+                                  //     fontWeight: FontWeight.w500,
+                                  //     height: 1.10,
+                                  //   ),
+                                  // ),
                                 ],
                               ),
                             ],
@@ -336,6 +368,429 @@ class _ElysiumColonyState extends State<ElysiumColony> {
                 ),
               ),
             ),
+
+            // Travel Path container
+            // Padding(
+            //   padding: EdgeInsets.all(displayWidth * .05),
+            //   child: SizedBox(
+            //     width: displayWidth,
+            //     child: Column(
+            //         mainAxisSize: MainAxisSize.min,
+            //         mainAxisAlignment: MainAxisAlignment.start,
+            //         crossAxisAlignment: CrossAxisAlignment.start,
+            //         children: [
+            //           const Text(
+            //             'Travel Path',
+            //             style: TextStyle(
+            //               color: Colors.black,
+            //               fontSize: 20,
+            //               fontFamily: 'Inter',
+            //               fontWeight: FontWeight.w700,
+            //               height: 1.10,
+            //             ),
+            //           ),
+            //           const SizedBox(height: 19),
+            //           Column(
+            //             children: [
+            //               Container(
+            //                 width: displayWidth,
+            //                 decoration: ShapeDecoration(
+            //                   color: Colors.white,
+            //                   shape: RoundedRectangleBorder(
+            //                     borderRadius: BorderRadius.circular(12),
+            //                   ),
+            //                   shadows: const [
+            //                     BoxShadow(
+            //                       color: Color(0x19000000),
+            //                       blurRadius: 10,
+            //                       offset: Offset(0, 1),
+            //                       spreadRadius: 0,
+            //                     )
+            //                   ],
+            //                 ),
+            //                 child: const Padding(
+            //                   padding: EdgeInsets.all(20.0),
+            //                   child: Column(children: [
+            //                     FittedBox(
+            //                       child: Column(
+            //                         mainAxisSize: MainAxisSize.min,
+            //                         mainAxisAlignment: MainAxisAlignment.start,
+            //                         crossAxisAlignment:
+            //                             CrossAxisAlignment.start,
+            //                         children: [
+            //                           Row(
+            //                             mainAxisSize: MainAxisSize.min,
+            //                             mainAxisAlignment:
+            //                                 MainAxisAlignment.start,
+            //                             crossAxisAlignment:
+            //                                 CrossAxisAlignment.start,
+            //                             children: [
+            //                               Text(
+            //                                 '27th August',
+            //                                 style: TextStyle(
+            //                                   color: Colors.black,
+            //                                   fontSize: 14,
+            //                                   fontFamily: 'Inter',
+            //                                   fontWeight: FontWeight.w600,
+            //                                 ),
+            //                               ),
+            //                               SizedBox(width: 48),
+            //                               SizedBox(
+            //                                 width: 171,
+            //                                 child: Text.rich(
+            //                                   TextSpan(
+            //                                     children: [
+            //                                       TextSpan(
+            //                                         text: 'Departure at',
+            //                                         style: TextStyle(
+            //                                           color: Colors.black,
+            //                                           fontSize: 12,
+            //                                           fontFamily: 'Inter',
+            //                                           fontWeight:
+            //                                               FontWeight.w400,
+            //                                         ),
+            //                                       ),
+            //                                       TextSpan(
+            //                                         text: ' \n',
+            //                                         style: TextStyle(
+            //                                           color: Colors.black,
+            //                                           fontSize: 14,
+            //                                           fontFamily: 'Inter',
+            //                                           fontWeight:
+            //                                               FontWeight.w500,
+            //                                         ),
+            //                                       ),
+            //                                       TextSpan(
+            //                                         text: 'NebulaX',
+            //                                         style: TextStyle(
+            //                                           color: Colors.black,
+            //                                           fontSize: 14,
+            //                                           fontFamily: 'Inter',
+            //                                           fontWeight:
+            //                                               FontWeight.w600,
+            //                                         ),
+            //                                       ),
+            //                                       TextSpan(
+            //                                         text: ' ',
+            //                                         style: TextStyle(
+            //                                           color: Colors.black,
+            //                                           fontSize: 14,
+            //                                           fontFamily: 'Inter',
+            //                                           fontWeight:
+            //                                               FontWeight.w500,
+            //                                         ),
+            //                                       ),
+            //                                       TextSpan(
+            //                                         text: 'Station ',
+            //                                         style: TextStyle(
+            //                                           color: Colors.black,
+            //                                           fontSize: 14,
+            //                                           fontFamily: 'Inter',
+            //                                           fontWeight:
+            //                                               FontWeight.w600,
+            //                                         ),
+            //                                       ),
+            //                                       TextSpan(
+            //                                         text: 'Los Alamos ',
+            //                                         style: TextStyle(
+            //                                           color: Colors.black,
+            //                                           fontSize: 10,
+            //                                           fontFamily: 'Inter',
+            //                                           fontWeight:
+            //                                               FontWeight.w500,
+            //                                         ),
+            //                                       ),
+            //                                     ],
+            //                                   ),
+            //                                 ),
+            //                               ),
+            //                             ],
+            //                           ),
+            //                           SizedBox(height: 22),
+            //                           Row(
+            //                             mainAxisSize: MainAxisSize.min,
+            //                             mainAxisAlignment:
+            //                                 MainAxisAlignment.start,
+            //                             crossAxisAlignment:
+            //                                 CrossAxisAlignment.start,
+            //                             children: [
+            //                               Text(
+            //                                 '3rd October',
+            //                                 style: TextStyle(
+            //                                   color: Colors.black,
+            //                                   fontSize: 14,
+            //                                   fontFamily: 'Inter',
+            //                                   fontWeight: FontWeight.w500,
+            //                                 ),
+            //                               ),
+            //                               SizedBox(width: 48),
+            //                               SizedBox(
+            //                                 width: 185,
+            //                                 height: 49,
+            //                                 child: Text.rich(
+            //                                   TextSpan(
+            //                                     children: [
+            //                                       TextSpan(
+            //                                         text: 'Space',
+            //                                         style: TextStyle(
+            //                                           color: Colors.black,
+            //                                           fontSize: 14,
+            //                                           fontFamily: 'Inter',
+            //                                           fontWeight:
+            //                                               FontWeight.w600,
+            //                                         ),
+            //                                       ),
+            //                                       TextSpan(
+            //                                         text: ' ',
+            //                                         style: TextStyle(
+            //                                           color: Colors.black,
+            //                                           fontSize: 14,
+            //                                           fontFamily: 'Inter',
+            //                                           fontWeight:
+            //                                               FontWeight.w500,
+            //                                         ),
+            //                                       ),
+            //                                       TextSpan(
+            //                                         text: 'Station ',
+            //                                         style: TextStyle(
+            //                                           color: Colors.black,
+            //                                           fontSize: 14,
+            //                                           fontFamily: 'Inter',
+            //                                           fontWeight:
+            //                                               FontWeight.w600,
+            //                                         ),
+            //                                       ),
+            //                                       TextSpan(
+            //                                         text: 'I',
+            //                                         style: TextStyle(
+            //                                           color: Colors.black,
+            //                                           fontSize: 14,
+            //                                           fontFamily:
+            //                                               'Iowan Old Style',
+            //                                           fontWeight:
+            //                                               FontWeight.w700,
+            //                                         ),
+            //                                       ),
+            //                                       TextSpan(
+            //                                         text: ' \n',
+            //                                         style: TextStyle(
+            //                                           color: Colors.black,
+            //                                           fontSize: 14,
+            //                                           fontFamily: 'Inter',
+            //                                           fontWeight:
+            //                                               FontWeight.w600,
+            //                                         ),
+            //                                       ),
+            //                                       TextSpan(
+            //                                         text:
+            //                                             '38.5 million km away to Mars\n16.4 million km away from Earth\n',
+            //                                         style: TextStyle(
+            //                                           color: Colors.black,
+            //                                           fontSize: 12,
+            //                                           fontFamily: 'Inter',
+            //                                           fontWeight:
+            //                                               FontWeight.w500,
+            //                                         ),
+            //                                       ),
+            //                                     ],
+            //                                   ),
+            //                                 ),
+            //                               ),
+            //                             ],
+            //                           ),
+            //                           SizedBox(height: 22),
+            //                           Row(
+            //                             mainAxisSize: MainAxisSize.min,
+            //                             mainAxisAlignment:
+            //                                 MainAxisAlignment.start,
+            //                             crossAxisAlignment:
+            //                                 CrossAxisAlignment.start,
+            //                             children: [
+            //                               Text(
+            //                                 '7th January',
+            //                                 style: TextStyle(
+            //                                   color: Colors.black,
+            //                                   fontSize: 14,
+            //                                   fontFamily: 'Inter',
+            //                                   fontWeight: FontWeight.w500,
+            //                                 ),
+            //                               ),
+            //                               SizedBox(width: 48),
+            //                               SizedBox(
+            //                                 width: 185,
+            //                                 height: 49,
+            //                                 child: Text.rich(
+            //                                   TextSpan(
+            //                                     children: [
+            //                                       TextSpan(
+            //                                         text: 'Space',
+            //                                         style: TextStyle(
+            //                                           color: Colors.black,
+            //                                           fontSize: 14,
+            //                                           fontFamily: 'Inter',
+            //                                           fontWeight:
+            //                                               FontWeight.w600,
+            //                                         ),
+            //                                       ),
+            //                                       TextSpan(
+            //                                         text: ' ',
+            //                                         style: TextStyle(
+            //                                           color: Colors.black,
+            //                                           fontSize: 14,
+            //                                           fontFamily: 'Inter',
+            //                                           fontWeight:
+            //                                               FontWeight.w500,
+            //                                         ),
+            //                                       ),
+            //                                       TextSpan(
+            //                                         text: 'Station ',
+            //                                         style: TextStyle(
+            //                                           color: Colors.black,
+            //                                           fontSize: 14,
+            //                                           fontFamily: 'Inter',
+            //                                           fontWeight:
+            //                                               FontWeight.w600,
+            //                                         ),
+            //                                       ),
+            //                                       TextSpan(
+            //                                         text: 'II',
+            //                                         style: TextStyle(
+            //                                           color: Colors.black,
+            //                                           fontSize: 14,
+            //                                           fontFamily:
+            //                                               'Iowan Old Style',
+            //                                           fontWeight:
+            //                                               FontWeight.w700,
+            //                                         ),
+            //                                       ),
+            //                                       TextSpan(
+            //                                         text: ' \n',
+            //                                         style: TextStyle(
+            //                                           color: Colors.black,
+            //                                           fontSize: 14,
+            //                                           fontFamily: 'Inter',
+            //                                           fontWeight:
+            //                                               FontWeight.w600,
+            //                                         ),
+            //                                       ),
+            //                                       TextSpan(
+            //                                         text:
+            //                                             '18.2 million km away to Mars\n36.7 million km away from Earth\n',
+            //                                         style: TextStyle(
+            //                                           color: Colors.black,
+            //                                           fontSize: 12,
+            //                                           fontFamily: 'Inter',
+            //                                           fontWeight:
+            //                                               FontWeight.w500,
+            //                                         ),
+            //                                       ),
+            //                                     ],
+            //                                   ),
+            //                                 ),
+            //                               ),
+            //                             ],
+            //                           ),
+            //                           SizedBox(height: 22),
+            //                           Row(
+            //                             mainAxisSize: MainAxisSize.min,
+            //                             mainAxisAlignment:
+            //                                 MainAxisAlignment.start,
+            //                             crossAxisAlignment:
+            //                                 CrossAxisAlignment.start,
+            //                             children: [
+            //                               Text(
+            //                                 '25th March',
+            //                                 style: TextStyle(
+            //                                   color: Colors.black,
+            //                                   fontSize: 14,
+            //                                   fontFamily: 'Inter',
+            //                                   fontWeight: FontWeight.w500,
+            //                                 ),
+            //                               ),
+            //                               SizedBox(width: 48),
+            //                               SizedBox(
+            //                                 width: 171,
+            //                                 child: Text.rich(
+            //                                   TextSpan(
+            //                                     children: [
+            //                                       TextSpan(
+            //                                         text: 'Arrival to',
+            //                                         style: TextStyle(
+            //                                           color: Colors.black,
+            //                                           fontSize: 12,
+            //                                           fontFamily: 'Inter',
+            //                                           fontWeight:
+            //                                               FontWeight.w400,
+            //                                         ),
+            //                                       ),
+            //                                       TextSpan(
+            //                                         text: ' \n',
+            //                                         style: TextStyle(
+            //                                           color: Colors.black,
+            //                                           fontSize: 14,
+            //                                           fontFamily: 'Inter',
+            //                                           fontWeight:
+            //                                               FontWeight.w500,
+            //                                         ),
+            //                                       ),
+            //                                       TextSpan(
+            //                                         text: 'NebulaX',
+            //                                         style: TextStyle(
+            //                                           color: Colors.black,
+            //                                           fontSize: 14,
+            //                                           fontFamily: 'Inter',
+            //                                           fontWeight:
+            //                                               FontWeight.w600,
+            //                                         ),
+            //                                       ),
+            //                                       TextSpan(
+            //                                         text: ' ',
+            //                                         style: TextStyle(
+            //                                           color: Colors.black,
+            //                                           fontSize: 14,
+            //                                           fontFamily: 'Inter',
+            //                                           fontWeight:
+            //                                               FontWeight.w500,
+            //                                         ),
+            //                                       ),
+            //                                       TextSpan(
+            //                                         text: 'Station ',
+            //                                         style: TextStyle(
+            //                                           color: Colors.black,
+            //                                           fontSize: 14,
+            //                                           fontFamily: 'Inter',
+            //                                           fontWeight:
+            //                                               FontWeight.w600,
+            //                                         ),
+            //                                       ),
+            //                                       TextSpan(
+            //                                         text: 'Elysium',
+            //                                         style: TextStyle(
+            //                                           color: Colors.black,
+            //                                           fontSize: 10,
+            //                                           fontFamily: 'Inter',
+            //                                           fontWeight:
+            //                                               FontWeight.w500,
+            //                                         ),
+            //                                       ),
+            //                                     ],
+            //                                   ),
+            //                                 ),
+            //                               ),
+            //                             ],
+            //                           ),
+            //                         ],
+            //                       ),
+            //                     ),
+            //                   ]),
+            //                 ),
+            //               ),
+            //             ],
+            //           ),
+            //         ]),
+            //   ),
+            // ),
+
             // Climate container
             Padding(
               padding: EdgeInsets.all(displayWidth * .05),
@@ -346,7 +801,7 @@ class _ElysiumColonyState extends State<ElysiumColony> {
                     const Row(
                       children: [
                         Text(
-                          'Thời tiết',
+                          'Climate',
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 20,
@@ -383,7 +838,7 @@ class _ElysiumColonyState extends State<ElysiumColony> {
                     const Row(
                       children: [
                         Text(
-                          'Mức phổ biến',
+                          'Population Chart',
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 20,
@@ -428,7 +883,7 @@ class _ElysiumColonyState extends State<ElysiumColony> {
                           child: const Row(
                             children: [
                               Text(
-                                'Thông tin hành lý',
+                                'Luggage Information',
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 20,
@@ -557,12 +1012,21 @@ class _ElysiumColonyState extends State<ElysiumColony> {
                       horizontal: displayWidth * 0.1,
                       vertical: displayWidth * 0.01,
                     ),
-
+                    // child: const Center(
+                    //   child: Text(
+                    //     'Book Tour',
+                    //     style: TextStyle(
+                    //       color: Colors.white,
+                    //       fontSize: 16,
+                    //       fontWeight: FontWeight.bold,
+                    //     ),
+                    //   ),
+                    // ),
                     child: Center(
-                        child: getStateWidget(state),
-                      ),
-                    ),
+                      child: getStateWidget(state),
+                    )
                   ),
+                ),
               ],
             ),
           ),
@@ -571,4 +1035,3 @@ class _ElysiumColonyState extends State<ElysiumColony> {
     ));
   }
 }
-

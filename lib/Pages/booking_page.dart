@@ -14,7 +14,7 @@ class Booking extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 255, 255, 255),
         title: const Text(
-          'Booking Room',
+          'Room List',
           style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
         ),
         iconTheme: IconThemeData(color: Colors.black),
@@ -88,7 +88,7 @@ class Booking extends StatelessWidget {
                                         decoration: InputDecoration(
                                           border: InputBorder.none,
                                           hintText:
-                                              'Tên', // Placeholder text
+                                              'User Name', // Placeholder text
                                           hintStyle: TextStyle(
                                             color:
                                                 Colors.black.withOpacity(0.5),
@@ -121,7 +121,7 @@ class Booking extends StatelessWidget {
                                         decoration: InputDecoration(
                                           border: InputBorder.none,
                                           hintText:
-                                              'SĐT', // Placeholder text
+                                              'Phone', // Placeholder text
                                           hintStyle: TextStyle(
                                             color:
                                                 Colors.black.withOpacity(0.5),
@@ -187,7 +187,7 @@ class Booking extends StatelessWidget {
                                         decoration: InputDecoration(
                                           border: InputBorder.none,
                                           hintText:
-                                              'CCCD', // Placeholder text
+                                              'Role No.', // Placeholder text
                                           hintStyle: TextStyle(
                                             color:
                                                 Colors.black.withOpacity(0.5),
@@ -220,7 +220,7 @@ class Booking extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const Text(
-                        'Giá vé',
+                        'Ticket Prices',
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 20,
@@ -240,7 +240,7 @@ class Booking extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'Giá 1 vé',
+                                    'For one ticket',
                                     style: TextStyle(
                                       color: Colors.black,
                                       fontSize: 14,
@@ -250,7 +250,7 @@ class Booking extends StatelessWidget {
                                   ),
                                   SizedBox(height: 8),
                                   Text(
-                                    'Số lượng',
+                                    'No of tickets',
                                     style: TextStyle(
                                       color: Colors.black,
                                       fontSize: 14,
@@ -260,7 +260,7 @@ class Booking extends StatelessWidget {
                                   ),
                                   SizedBox(height: 8),
                                   Text(
-                                    'Thuế',
+                                    'Space Tax',
                                     style: TextStyle(
                                       color: Colors.black,
                                       fontSize: 14,
@@ -317,7 +317,7 @@ class Booking extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  'Tổng',
+                                  'Total',
                                   style: TextStyle(
                                     color: Colors.black,
                                     fontSize: 16,

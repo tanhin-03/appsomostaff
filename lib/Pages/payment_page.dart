@@ -23,7 +23,7 @@ class _PaymentState extends State<Payment> {
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 255, 255, 255),
         title: const Text(
-          'Thực hiện thanh toán',
+          'Make Payment',
           style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
         ),
         iconTheme: IconThemeData(color: Colors.black),
@@ -54,9 +54,8 @@ class _PaymentState extends State<Payment> {
                   child: Column(
                     children: [
                       Image.asset(
-                        'assets/images/gallery1.jpg',
-                        width: 400,
-                        height: 100,
+                        'assets/images/elysiumbooking.png',
+                        width: displayWidth,
                         fit: BoxFit.cover,
                       ),
 
@@ -70,7 +69,7 @@ class _PaymentState extends State<Payment> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               const Text(
-                                'Giá vé',
+                                'Ticket Prices',
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 20,
@@ -94,7 +93,7 @@ class _PaymentState extends State<Payment> {
                                               CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              'Giá 1 vé',
+                                              'For one ticket',
                                               style: TextStyle(
                                                 color: Colors.black,
                                                 fontSize: 14,
@@ -104,7 +103,7 @@ class _PaymentState extends State<Payment> {
                                             ),
                                             SizedBox(height: 8),
                                             Text(
-                                              'Số lượng',
+                                              'No of tickets',
                                               style: TextStyle(
                                                 color: Colors.black,
                                                 fontSize: 14,
@@ -114,7 +113,7 @@ class _PaymentState extends State<Payment> {
                                             ),
                                             SizedBox(height: 8),
                                             Text(
-                                              'Thuế',
+                                              'Space Tax',
                                               style: TextStyle(
                                                 color: Colors.black,
                                                 fontSize: 14,
@@ -174,7 +173,7 @@ class _PaymentState extends State<Payment> {
                                             MainAxisAlignment.spaceBetween,
                                         children: [
                                           Text(
-                                            'Tổng',
+                                            'Total',
                                             style: TextStyle(
                                               color: Colors.black,
                                               fontSize: 16,
@@ -218,7 +217,7 @@ class _PaymentState extends State<Payment> {
                     const Padding(
                       padding: EdgeInsets.only(bottom: 16.0),
                       child: Text(
-                        'Chọn phương thức thanh toán',
+                        'Choose Payment Method',
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 18,
@@ -246,7 +245,7 @@ class _PaymentState extends State<Payment> {
                               activeColor: const Color.fromARGB(255, 234, 6, 6),
                             ),
                             Text(
-                              'Thẻ tín dụng',
+                              'Credit Card',
                               style: TextStyle(
                                 color: selectedPaymentMethod == 1
                                     ? Colors.blue
@@ -271,7 +270,7 @@ class _PaymentState extends State<Payment> {
                               },
                             ),
                             Text(
-                              'Ngân hàng',
+                              'Bank Transfer',
                               style: TextStyle(
                                 color: selectedPaymentMethod == 2
                                     ? Colors.blue
