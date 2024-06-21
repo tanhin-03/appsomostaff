@@ -37,7 +37,7 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.6
-
+  dio: ^4.0.0
   http: ^1.2.1
 
   calendar_view: ^1.2.0
@@ -83,6 +83,7 @@ flutter:
     - assets/images/SpaceX.png
 
     - assets/icons/
+    - assets/data/data.json
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

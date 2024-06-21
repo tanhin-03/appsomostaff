@@ -22,22 +22,13 @@ class HotelRoomList {
       : this.rooms = (json['rooms'] as List)
       .map((roomJson) => HotelRoom.fromJson(roomJson))
       .toList();
+
+  List<HotelRoom>? getRoomsStartingWithR() {
+    return rooms?.where((room) => room.roomID?.startsWith('R') ?? false).toList();
+  }
 }
 
 
-// {
-// "rooms": [
-// {
-// "roomID": "R01",
-// "roomName": "somofarm",
-// "description": "A luxurious room with a king-size bed",
-// "typeID": "DELUXE"
-// },
-// {
-// "roomID": "T02",
-// "roomName": "tent1",
-// "description": "A cozy room with a queen-size bed",
-// "typeID": "STANDARD"
-// }
-// ]
-// }
+
+
+

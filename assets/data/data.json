@@ -1,0 +1,24 @@
+{
+  "account": [
+    {
+      "username": "tanhin",
+      "password": "123@123Abc",
+      "role": "admin"
+    },
+    {
+      "username": "sonnh",
+      "password": "helloworld",
+      "role": "admin"
+    },
+    {
+      "username": "hoant",
+      "password": "12345678",
+      "role": "staff"
+    },
+    {
+      "username": "vuong",
+      "password": "12345678",
+      "role": "staff"
+    }
+  ]
+}

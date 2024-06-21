@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
-import '/pages/room_test.dart';
+import '../data_sources/api_services.dart';
+import '../items/roomItem.dart';
+import '../items/tentItem.dart';
+import '../models/room.dart';
+import '../models/tent.dart';
+import '/pages/room_view.dart';
 import '/pages/my_account.dart';
-import 'notifications_page.dart';
+// import 'notifications_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -18,23 +23,54 @@ class _HomePageState extends State<HomePage> {
     'Phòng Cửu Long',
   ];
 
-  // String _selectedSortOption = 'Ratings';
-
   DateTime? selectedDate;
 
-  Future<void> _selectDate(BuildContext context) async {
-    final DateTime? pickedDate = await showDatePicker(
+  // Future<void> _selectDate(BuildContext context) async {
+  //   final DateTime? pickedDate = await showDatePicker(
+  //     context: context,
+  //     initialDate: DateTime.now(),
+  //     firstDate: DateTime(2003),
+  //     lastDate: DateTime(2160),
+  //   );
+  //   if (pickedDate != null) {
+  //     setState(() {
+  //       selectedDate = pickedDate;
+  //     });
+  //   }
+  // }
+
+  final TextEditingController _searchController = TextEditingController();
+
+  void showSearchResults(BuildContext context) async {
+
+    final String searchQuery = _searchController.text;
+
+    // Assume you have a list of rooms
+    List<HotelRoom> rooms = await ApiRoom().fetchRoom();
+
+    // Filter the rooms based on the search query
+    List<HotelRoom> filteredRooms = rooms
+        .where((room) =>
+        room.roomName!.toLowerCase().contains(searchQuery.toLowerCase()))
+        .toList();
+
+    // Show a dialog with the search results
+    showDialog(
       context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime(2003),
-      lastDate: DateTime(2160),
+      builder: (context) => AlertDialog(
+        title: Text('Search Results'),
+        content: filteredRooms.isEmpty
+            ? Text('No rooms found')
+            : ListTile(
+          title: Text(filteredRooms[0].roomName!),
+          subtitle: Text(filteredRooms[0].description!),
+        ),
+      ),
     );
-    if (pickedDate != null) {
-      setState(() {
-        selectedDate = pickedDate;
-      });
-    }
   }
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -46,102 +82,6 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.white,
         body: ListView(
           children: [
-            // Account button and notification button
-            // Padding(
-            //   padding: const EdgeInsets.all(16.0),
-            //   child: FittedBox(
-            //     child: Row(
-            //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //       children: [
-            //         InkWell(
-            //           onTap: () {
-            //             Navigator.push(context, MaterialPageRoute(builder: (context) => const MyAccountPage()));
-            //           },
-            //           child: Container(
-            //             height: accountButtonHeight,
-            //             width: displayWidth * 0.7,
-            //             decoration: BoxDecoration(
-            //               gradient: const LinearGradient(
-            //                 colors: [
-            //                   Color.fromARGB(255, 1, 73, 255),
-            //                   Color.fromARGB(255, 162, 221, 255)
-            //                 ],
-            //                 begin: Alignment.topLeft,
-            //                 end: Alignment.bottomRight,
-            //               ),
-            //               borderRadius: BorderRadius.circular(100.0),
-            //             ),
-            //             child: const Row(
-            //               children: [
-            //                 SizedBox(width: 10),
-            //                 CircleAvatar(
-            //                   radius: 30,
-            //                   backgroundImage:
-            //                       AssetImage('assets/images/profile.png'),
-            //                 ),
-            //                 SizedBox(width: 5),
-            //                 Column(
-            //                   mainAxisAlignment: MainAxisAlignment.center,
-            //                   crossAxisAlignment: CrossAxisAlignment.start,
-            //                   children: [
-            //                     Padding(
-            //                       padding: EdgeInsets.symmetric(horizontal: 10.0),
-            //                       child: Text(
-            //                         'User Name',
-            //                         style: TextStyle(
-            //                           fontSize: 20,
-            //                           fontWeight: FontWeight.bold,
-            //                           color: Colors.white,
-            //                         ),
-            //                       ),
-            //                     ),
-            //                     Padding(
-            //                       padding: EdgeInsets.symmetric(horizontal: 10.0),
-            //                       child: Text(
-            //                         'User ID: 123456',
-            //                         style: TextStyle(
-            //                           fontSize: 16,
-            //                           fontWeight: FontWeight.w600,
-            //                           color: Colors.white,
-            //                         ),
-            //                       ),
-            //                     ),
-            //                   ],
-            //                 ),
-            //               ],
-            //             ),
-            //           ),
-            //         ),
-            //         SizedBox(width: spaceBetweenButtons),
-            //         Material(
-            //           elevation: 2.0,
-            //           borderRadius: BorderRadius.circular(20.0),
-            //           child: InkWell(
-            //             onTap: () {
-            //               Navigator.push(context, MaterialPageRoute(builder: (context) => const NotificationsPage()));
-            //             },
-            //             child: Container(
-            //               width: accountButtonHeight,
-            //               height: accountButtonHeight,
-            //               decoration: BoxDecoration(
-            //                 color: const Color.fromARGB(255, 255, 255, 255),
-            //                 borderRadius: BorderRadius.circular(20.0),
-            //               ),
-            //               child: const Center(
-            //                 child: ImageIcon(
-            //                   AssetImage('assets/images/bell.png'),
-            //                   color: Colors.blue,
-            //                   size: 32,
-            //                 ),
-            //               ),
-            //             ),
-            //           ),
-            //         ),
-            //       ],
-            //     ),
-            //   ),
-            // ),
-
             // Search bar
             Padding(
               padding: const EdgeInsets.all(16.0),
@@ -154,7 +94,7 @@ class _HomePageState extends State<HomePage> {
                   boxShadow: [
                     BoxShadow(
                       color:
-                          const Color.fromARGB(255, 0, 0, 0).withOpacity(0.1),
+                      const Color.fromARGB(255, 0, 0, 0).withOpacity(0.1),
                       spreadRadius: 1,
                       blurRadius: 5,
                       offset: const Offset(0, 0),
@@ -174,39 +114,6 @@ class _HomePageState extends State<HomePage> {
                     ),
                     const SizedBox(height: 12),
 
-                    // "FROM"
-                    // Padding(
-                    //   padding: const EdgeInsets.symmetric(
-                    //       horizontal: 20.0, vertical: 10.0),
-                    //   child: Autocomplete<String>(
-                    //     optionsBuilder: (textEditingValue) {
-                    //       return stationNames.where((option) => option
-                    //           .toLowerCase()
-                    //           .contains(textEditingValue.text.toLowerCase()));
-                    //     },
-                    //     onSelected: (value) {},
-                    //     fieldViewBuilder: (BuildContext context,
-                    //         TextEditingController fieldTextEditingController,
-                    //         FocusNode fieldFocusNode,
-                    //         VoidCallback onFieldSubmitted) {
-                    //       return TextField(
-                    //         controller: fieldTextEditingController,
-                    //         focusNode: fieldFocusNode,
-                    //         decoration: InputDecoration(
-                    //           labelText: "From",
-                    //           hintText: "Select a space station",
-                    //           border: OutlineInputBorder(
-                    //             borderRadius: BorderRadius.circular(16.0),
-                    //             borderSide: BorderSide(color: Colors.blue),
-                    //           ),
-                    //         ),
-                    //         onChanged: (text) {},
-                    //         onSubmitted: (text) {},
-                    //       );
-                    //     },
-                    //   ),
-                    // ),
-
                     // "TO"
                     Padding(
                       padding: const EdgeInsets.symmetric(
@@ -223,7 +130,8 @@ class _HomePageState extends State<HomePage> {
                             FocusNode fieldFocusNode,
                             VoidCallback onFieldSubmitted) {
                           return TextField(
-                            controller: fieldTextEditingController,
+                            controller: _searchController,
+                            // controller: fieldTextEditingController,
                             focusNode: fieldFocusNode,
                             decoration: InputDecoration(
                               labelText: "Name",
@@ -240,74 +148,32 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
 
-                    // "DATE" and "PASSENGERS"
-                    // Padding(
-                    //   padding: const EdgeInsets.symmetric(
-                    //       horizontal: 20.0, vertical: 10),
-                    //   child: Row(
-                    //     children: [
-                    //       Expanded(
-                    //         child: TextFormField(
-                    //           readOnly: true,
-                    //           onTap: () => _selectDate(context),
-                    //           decoration: InputDecoration(
-                    //             labelText: 'Select Date',
-                    //             labelStyle: const TextStyle(color: Colors.blue),
-                    //             border: OutlineInputBorder(
-                    //               borderRadius: BorderRadius.circular(16.0),
-                    //             ),
-                    //           ),
-                    //           controller: TextEditingController(
-                    //             text: selectedDate != null
-                    //                 ? '${selectedDate!.year}-${selectedDate!.month}-${selectedDate!.day}'
-                    //                 : '',
-                    //           ),
-                    //         ),
-                    //       ),
-                    //       const SizedBox(width: 16),
-                    //       Expanded(
-                    //         child: TextFormField(
-                    //           decoration: InputDecoration(
-                    //             labelText: 'Passengers',
-                    //             hintText: "Number of passengers",
-                    //             border: OutlineInputBorder(
-                    //               borderRadius: BorderRadius.circular(16.0),
-                    //             ),
-                    //           ),
-                    //         ),
-                    //       ),
-                    //     ],
-                    //   ),
-                    // ),
-
                     // "SEARCH" button
                     Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: GradientButton(
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const ElysiumColony()));
-                        },
-                        height: 55.0,
-                        child: const Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.search,
-                              color: Colors.white,
-                              size: 20,
-                            ),
-                            SizedBox(width: 8),
-                            Text(
-                              'Search',
-                              style: TextStyle(
-                                  fontSize: 16.0, color: Colors.white),
-                            ),
-                          ],
-                        ),
-                      ),
+                        padding: const EdgeInsets.all(16.0),
+                        child: GradientButton(
+                          onPressed: () {
+                            if (_searchController.text.isNotEmpty) {
+                              showSearchResults(context);
+                            }
+                          },
+                          height: 55.0,
+                          child: const Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.search,
+                                color: Colors.white,
+                                size: 20,
+                              ),
+                              SizedBox(width: 8),
+                              Text(
+                                'Search',
+                                style: TextStyle(fontSize: 16.0, color: Colors.white),
+                              ),
+                            ],
+                          ),
+                        )
                     ),
                   ],
                 ),
@@ -324,17 +190,11 @@ class _HomePageState extends State<HomePage> {
                   boxShadow: [
                     BoxShadow(
                       color: Color.fromARGB(50, 50, 50, 50),
-                      // offset: Offset(0.0, 0.0),
                       blurRadius: 5,
-                      // spreadRadius: 1,
-                      // inset: true,
                     ),
                     BoxShadow(
                       color: Color.fromARGB(50, 50, 50, 50),
-                      // offset: Offset(0.0, 0.0),
                       blurRadius: 5,
-                      // spreadRadius: 1,
-                      // inset: true,
                     ),
                   ],
                 ),
@@ -357,46 +217,32 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                     Expanded(
-                      child: ListView(
-                        scrollDirection: Axis.horizontal,
-                        children: [
-                          LocationButton(
-                            imageAsset: 'assets/images/gallery1.jpg',
-                            title: 'Phòng Vương Quốc Đỏ\n',
-                            description: 'Destination',
-                            onTap: () {
-                              // Navigate to the related pages
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => const ElysiumColony()));
-                            },
-                          ),
-                          LocationButton(
-                            imageAsset: 'assets/images/gallery2.jpg',
-                            title: 'Phòng Dấu ấn Mang Thít\n',
-                            description: 'Destination',
-                            onTap: () {
-                              // Navigate to the related pages
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => const ElysiumColony()));
-                            },
-                          ),
-                          LocationButton(
-                            imageAsset: 'assets/images/gallery3.jpg',
-                            title: 'Lều trại dã ngoại Glamping\n',
-                            description: 'Destination',
-                            onTap: () {
-                              // Navigate to the related pages
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => const ElysiumColony()));
-                            },
-                          ),
-                        ],
+                      child: Container(
+                        padding: EdgeInsets.only(left: 10),
+                        height: MediaQuery.of(context).size.height,
+                        width: MediaQuery.of(context).size.height,
+                        child: FutureBuilder<List<HotelRoom>>(
+                          future: ApiRoom().fetchRoom(),
+                          // assume this is the API call
+                          builder: (context, snapshot) {
+                            if ((snapshot.hasError) || (!snapshot.hasData))
+                              return Container(
+                                child: Center(
+                                  child: CircularProgressIndicator(),
+                                ),
+                              );
+                            List<HotelRoom>? roomList = snapshot.data;
+                            return ListView.builder(
+                              scrollDirection: Axis.horizontal,
+                              itemCount: roomList!.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                return RoomItem(
+                                  room: roomList[index],
+                                );
+                              },
+                            );
+                          },
+                        ),
                       ),
                     ),
                     SizedBox(height: displayWidth * .025),
@@ -448,46 +294,32 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                     Expanded(
-                      child: ListView(
-                        scrollDirection: Axis.horizontal,
-                        children: [
-                          LocationButton(
-                            imageAsset: 'assets/images/tent1.jpg',
-                            title: 'Lều trại dã ngoại Glamping 1\n',
-                            description: 'Destination',
-                            onTap: () {
-                              // Navigate to the related pages
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => const ElysiumColony()));
-                            },
-                          ),
-                          LocationButton(
-                            imageAsset: 'assets/images/tent2.jpg',
-                            title: 'Lều trại dã ngoại Glamping 2\n',
-                            description: 'Destination',
-                            onTap: () {
-                              // Navigate to the related pages
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => const ElysiumColony()));
-                            },
-                          ),
-                          LocationButton(
-                            imageAsset: 'assets/images/tent3.jpg',
-                            title: 'Lều trại dã ngoại Glamping 3n',
-                            description: 'Destination',
-                            onTap: () {
-                              // Navigate to the related pages
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => const ElysiumColony()));
-                            },
-                          ),
-                        ],
+                      child: Container(
+                        padding: EdgeInsets.only(left: 10),
+                        height: MediaQuery.of(context).size.height,
+                        width: MediaQuery.of(context).size.height,
+                        child: FutureBuilder<List<HomestayTent>>(
+                          future: ApiTent().fetchTent(),
+                          // assume this is the API call
+                          builder: (context, snapshot) {
+                            if ((snapshot.hasError) || (!snapshot.hasData))
+                              return Container(
+                                child: Center(
+                                  child: CircularProgressIndicator(),
+                                ),
+                              );
+                            List<HomestayTent>? tentList = snapshot.data;
+                            return ListView.builder(
+                              scrollDirection: Axis.horizontal,
+                              itemCount: tentList!.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                return TentItem(
+                                  tent: tentList[index],
+                                );
+                              },
+                            );
+                          },
+                        ),
                       ),
                     ),
                     SizedBox(height: displayWidth * .025),
@@ -495,114 +327,6 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
-
-            // The best tours container
-            // Padding(
-            //   padding: EdgeInsets.all(displayWidth * .05),
-            //   child: SizedBox(
-            //     height: displayWidth * 1.4,
-            //     width: double.infinity,
-            //     child: Column(
-            //       children: [
-            //         Padding(
-            //           padding:
-            //               EdgeInsets.symmetric(vertical: displayWidth * .025),
-            //           child: Row(
-            //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //             children: [
-            //               Padding(
-            //                 padding: EdgeInsets.only(top: displayWidth * .01),
-            //                 child: Text(
-            //                   'The Best Tours',
-            //                   style: TextStyle(
-            //                     fontSize: displayWidth * .05,
-            //                     fontWeight: FontWeight.bold,
-            //                   ),
-            //                 ),
-            //               ),
-            //               Padding(
-            //                 padding: EdgeInsets.only(top: displayWidth * .01),
-            //                 child: TextButton(
-            //                   onPressed: () {},
-            //                   style: ButtonStyle(),
-            //                   child: Text("More"),
-            //                 ),
-            //               )
-            //             ],
-            //           ),
-            //         ),
-            //         Padding(
-            //           padding: EdgeInsets.only(top: displayWidth * .01),
-            //           child: Row(
-            //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //             children: [
-            //               Text(
-            //                 'Sorted by',
-            //                 style: TextStyle(
-            //                   fontSize: displayWidth * .04,
-            //                   fontWeight: FontWeight.w400,
-            //                 ),
-            //               ),
-            //               SizedBox(width: displayWidth * 0.02),
-            //               DropdownButton<String>(
-            //                 value: _selectedSortOption,
-            //                 onChanged: (String? newValue) {
-            //                   setState(() {
-            //                     _selectedSortOption = newValue!;
-            //                   });
-            //                 },
-            //                 items: <String>[
-            //                   'Ratings',
-            //                   'Price',
-            //                   'Passenger Capacity',
-            //                 ].map<DropdownMenuItem<String>>((String value) {
-            //                   return DropdownMenuItem<String>(
-            //                     value: value,
-            //                     child: Text(value),
-            //                   );
-            //                 }).toList(),
-            //               ),
-            //             ],
-            //           ),
-            //         ),
-            //         Expanded(
-            //           child: Column(
-            //             crossAxisAlignment: CrossAxisAlignment.start,
-            //             children: [
-            //               LongButton(
-            //                 imageAsset: 'assets/images/travel1.png',
-            //                 description: 'Description',
-            //                 title: 'Phòng Vương Quốc Đỏ',
-            //                 backgroundColor: Color.fromARGB(255, 9, 0, 136),
-            //                 onTap: () {
-            //                   // Handle button tap action
-            //                 },
-            //               ),
-            //               LongButton(
-            //                 imageAsset: 'assets/images/travel2.png',
-            //                 description: 'Description',
-            //                 title: 'Lều trại dã ngoại Glamping',
-            //                 backgroundColor: Color.fromARGB(255, 255, 42, 42),
-            //                 onTap: () {
-            //                   // Handle button tap action
-            //                 },
-            //               ),
-            //               LongButton(
-            //                 imageAsset: 'assets/images/travel3.png',
-            //                 description: 'Description',
-            //                 title: 'Phòng Dấu ấn Mang Thít',
-            //                 backgroundColor: Color.fromARGB(255, 137, 161, 138),
-            //                 onTap: () {
-            //                   // Handle button tap action
-            //                 },
-            //               ),
-            //             ],
-            //           ),
-            //         ),
-            //       ],
-            //     ),
-            //   ),
-            // ),
           ],
         ));
   }
@@ -848,3 +572,7 @@ class LongButton extends StatelessWidget {
     );
   }
 }
+
+
+
+

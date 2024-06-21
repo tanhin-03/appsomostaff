@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:test_footer/test/signin_page.dart';
+
+import 'Pages/home_page.dart';
 import 'Pages/signin_page.dart';
 
 
@@ -20,6 +23,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       title: 'App Somo Staff',
       home: SignInPage(),
+      // home: HomePage(),
     );
   }
 }

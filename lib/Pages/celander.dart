@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
+import '../models/room.dart';
 import 'home_page.dart';
-import 'room_test.dart';
+import 'room_view.dart';
 
-class MyBookingsPage extends StatefulWidget {
-  const MyBookingsPage({super.key});
+class CelanderPage extends StatefulWidget {
+  const CelanderPage({super.key});
+
+  // final HotelRoom room;
+  //
+  // CelanderPage({required this.room});
 
   @override
-  State<MyBookingsPage> createState() => _MyBookingsPageState();
+  State<CelanderPage> createState() => _CelanderPageState();
 }
 
-class _MyBookingsPageState extends State<MyBookingsPage> {
+class _CelanderPageState extends State<CelanderPage> {
   // @override
   DateTime? selectedDate;
 
@@ -81,10 +86,15 @@ class _MyBookingsPageState extends State<MyBookingsPage> {
               padding: const EdgeInsets.all(16.0),
               child: GradientButton(
                 onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const ElysiumColony()));
+                  // Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //         builder: (context) =>  ElysiumColony(room: room)));
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('Không tìm thấy thông tin'),
+                      ),
+                    );
                 },
                 height: 55.0,
                 child: const Row(

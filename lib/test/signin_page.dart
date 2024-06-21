@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:http/http.dart' as http;
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -8,33 +8,31 @@ import '../models/account.dart';
 import '/pages/bottom_navbar.dart';
 
 @override
-SignInPage createState() => SignInPage();
+SignInPage2 createState() => SignInPage2();
 
-class SignInPage extends StatefulWidget {
-  SignInPage({super.key});
+class SignInPage2 extends StatefulWidget {
+  SignInPage2({super.key});
 
   @override
-  State<SignInPage> createState() => _SignInPageState();
+  State<SignInPage2> createState() => _SignInPage2State();
 }
 
-class _SignInPageState extends State<SignInPage> {
+class _SignInPage2State extends State<SignInPage2> {
   final _formKey = GlobalKey<FormState>();
   String _username = '';
   String _password = '';
   List<Account> _accounts = [];
 
   Future<void> _readJsonFile() async {
-    final response = await http.get(Uri.parse('https://jsonserver-two.vercel.app/account'));
+    final String response =
+        await rootBundle.loadString('assets/data/data.json');
+    final productData = await json.decode(response);
 
-    if (response.statusCode == 200) {
-      final jsonData = jsonDecode(response.body);
-      final accountsJson = jsonData['account']; // Get the "accounts" array from the JSON object
-      setState(() {
-        _accounts = (accountsJson as List).map((e) => Account.fromJson(e)).toList();
-      });
-    } else {
-      print('Failed to load accounts: ${response.statusCode}');
-    }
+    var list = productData["account"] as List<dynamic>;
+
+    setState(() {
+      _accounts = list.map((e) => Account.fromJson(e)).toList();
+    });
   }
 
   void _checkLogin() async {
@@ -162,7 +160,7 @@ class _SignInPageState extends State<SignInPage> {
                     TextFormField(
                       decoration: InputDecoration(
                           border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10)),
+                          borderRadius: BorderRadius.circular(10)),
                           hintText: 'Username',
                           hintStyle:
                           const TextStyle(color: Colors.grey, fontSize: 20)),
@@ -174,13 +172,10 @@ class _SignInPageState extends State<SignInPage> {
                       },
                       onSaved: (value) => _username = value!,
                     ),
-                    const SizedBox(
-                      height: 15,
-                    ),
                     TextFormField(
                       decoration: InputDecoration(
                           border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10)),
+                          borderRadius: BorderRadius.circular(10)),
                           hintText: 'Password',
                           hintStyle:
                           const TextStyle(color: Colors.grey, fontSize: 20)),

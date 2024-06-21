@@ -166,7 +166,8 @@ class NavBarState extends State<NavBar> {
 
   List<Widget> screens = [
     const HomePage(),
-    const MyBookingsPage(),
+    // const HomePage2(),
+    const CelanderPage(),
     // const MySavesPage(),
     const MyAccountPage(),
   ];
