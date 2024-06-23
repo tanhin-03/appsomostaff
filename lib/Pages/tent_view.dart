@@ -18,11 +18,11 @@ class ElysiumColony2 extends StatefulWidget {
 class _ElysiumColony2State extends State<ElysiumColony2> {
   int _selectedImageIndex = 0;
   final List<String> _imageUrls = [
-    'assets/images/gallery1.jpg',
-    'assets/images/gallery2.jpg',
-    'assets/images/gallery3.jpg',
-    'assets/images/gallery4.jpg',
-    'assets/images/gallery5.jpg',
+    'assets/images/tent1.jpg',
+    'assets/images/tent2.jpg',
+    'assets/images/tent3.jpg',
+    'assets/images/tent4.jpg',
+    'assets/images/tent5.jpg',
   ];
 
   final state = 1;

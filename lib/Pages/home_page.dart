@@ -42,7 +42,6 @@ class _HomePageState extends State<HomePage> {
   final TextEditingController _searchController = TextEditingController();
 
   void showSearchResults(BuildContext context) async {
-
     final String searchQuery = _searchController.text;
 
     // Assume you have a list of rooms
@@ -51,7 +50,7 @@ class _HomePageState extends State<HomePage> {
     // Filter the rooms based on the search query
     List<HotelRoom> filteredRooms = rooms
         .where((room) =>
-        room.roomName!.toLowerCase().contains(searchQuery.toLowerCase()))
+            room.roomName!.toLowerCase().contains(searchQuery.toLowerCase()))
         .toList();
 
     // Show a dialog with the search results
@@ -62,15 +61,12 @@ class _HomePageState extends State<HomePage> {
         content: filteredRooms.isEmpty
             ? Text('No rooms found')
             : ListTile(
-          title: Text(filteredRooms[0].roomName!),
-          subtitle: Text(filteredRooms[0].description!),
-        ),
+                title: Text(filteredRooms[0].roomName!),
+                subtitle: Text(filteredRooms[0].description!),
+              ),
       ),
     );
   }
-
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -94,7 +90,7 @@ class _HomePageState extends State<HomePage> {
                   boxShadow: [
                     BoxShadow(
                       color:
-                      const Color.fromARGB(255, 0, 0, 0).withOpacity(0.1),
+                          const Color.fromARGB(255, 0, 0, 0).withOpacity(0.1),
                       spreadRadius: 1,
                       blurRadius: 5,
                       offset: const Offset(0, 0),
@@ -169,12 +165,12 @@ class _HomePageState extends State<HomePage> {
                               SizedBox(width: 8),
                               Text(
                                 'Search',
-                                style: TextStyle(fontSize: 16.0, color: Colors.white),
+                                style: TextStyle(
+                                    fontSize: 16.0, color: Colors.white),
                               ),
                             ],
                           ),
-                        )
-                    ),
+                        )),
                   ],
                 ),
               ),
@@ -216,6 +212,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                     ),
+
                     Expanded(
                       child: Container(
                         padding: EdgeInsets.only(left: 10),
@@ -236,15 +233,21 @@ class _HomePageState extends State<HomePage> {
                               scrollDirection: Axis.horizontal,
                               itemCount: roomList!.length,
                               itemBuilder: (BuildContext context, int index) {
-                                return RoomItem(
-                                  room: roomList[index],
-                                );
+                                if (roomList[index].roomID != null &&
+                                    roomList[index].roomID!.startsWith('R')) {
+                                  return RoomItem(
+                                    room: roomList[index],
+                                  );
+                                } else {
+                                  return Container(); // or return an empty widget
+                                }
                               },
                             );
                           },
                         ),
                       ),
                     ),
+
                     SizedBox(height: displayWidth * .025),
                   ],
                 ),
@@ -293,6 +296,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                     ),
+
                     Expanded(
                       child: Container(
                         padding: EdgeInsets.only(left: 10),
@@ -313,9 +317,14 @@ class _HomePageState extends State<HomePage> {
                               scrollDirection: Axis.horizontal,
                               itemCount: tentList!.length,
                               itemBuilder: (BuildContext context, int index) {
-                                return TentItem(
-                                  tent: tentList[index],
-                                );
+                                if (tentList[index].roomID != null &&
+                                    tentList[index].roomID!.startsWith('T')) {
+                                  return TentItem(
+                                    tent: tentList[index],
+                                  );
+                                } else {
+                                  return Container(); // or return an empty widget
+                                }
                               },
                             );
                           },
@@ -572,7 +581,3 @@ class LongButton extends StatelessWidget {
     );
   }
 }
-
-
-
-

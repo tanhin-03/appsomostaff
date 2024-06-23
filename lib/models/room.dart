@@ -20,14 +20,15 @@ class HotelRoomList {
 
   HotelRoomList.fromJson(Map<String, dynamic> json)
       : this.rooms = (json['rooms'] as List)
-      .map((roomJson) => HotelRoom.fromJson(roomJson))
-      .toList();
+            .map((roomJson) => HotelRoom.fromJson(roomJson))
+            .toList();
 
   List<HotelRoom>? getRoomsStartingWithR() {
-    return rooms?.where((room) => room.roomID?.startsWith('R') ?? false).toList();
+    return rooms
+        ?.where((room) => room.roomID?.startsWith('R') ?? false)
+        .toList();
   }
 }
-
 
 
 

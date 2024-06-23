@@ -20,11 +20,12 @@ class HotelTentList {
 
   HotelTentList.fromJson(Map<String, dynamic> json)
       : this.rooms = (json['rooms'] as List)
-      .map((roomJson) => HomestayTent.fromJson(roomJson))
-      .toList();
+            .map((roomJson) => HomestayTent.fromJson(roomJson))
+            .toList();
 
   List<HomestayTent>? getRoomsStartingWithT() {
-    return rooms?.where((room) => room.roomID?.startsWith('T') ?? false).toList();
+    return rooms
+        ?.where((room) => room.roomID?.startsWith('T') ?? false)
+        .toList();
   }
 }
-
