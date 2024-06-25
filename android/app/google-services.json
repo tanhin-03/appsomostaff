@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "941391211804",
+    "project_id": "notification-somo",
+    "storage_bucket": "notification-somo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:941391211804:android:f51e54834b480d112c9ed9",
+        "android_client_info": {
+          "package_name": "com.example.test_footer"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC48JETJ8y9Ej6lqjmFRcB8VuKAoOlbGOw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

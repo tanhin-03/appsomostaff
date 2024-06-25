@@ -4,16 +4,6 @@ import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
 import 'package:flutter/foundation.dart'
     show defaultTargetPlatform, kIsWeb, TargetPlatform;
 
-/// Default [FirebaseOptions] for use with your Firebase apps.
-///
-/// Example:
-/// ```dart
-/// import 'firebase_options.dart';
-/// // ...
-/// await Firebase.initializeApp(
-///   options: DefaultFirebaseOptions.currentPlatform,
-/// );
-/// ```
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
@@ -44,21 +34,21 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyBt3WsW_CWzsmWLXI4mXlQ37ZLkn5n_fmM',
-    appId: '1:118109128001:web:7736f15e430ec2dfb20dc0',
-    messagingSenderId: '118109128001',
-    projectId: 'nebula-55342',
-    authDomain: 'nebula-55342.firebaseapp.com',
-    storageBucket: 'nebula-55342.appspot.com',
-    measurementId: 'G-B540DNHWHC',
+    apiKey: 'AIzaSyAxnWsa3ldKNnIHRHcSZUGWw1BIL_lx6wk',
+    appId: '1:941391211804:web:30db15b51bd10bff2c9ed9',
+    messagingSenderId: '941391211804',
+    projectId: 'notification-somo',
+    authDomain: 'notification-somo.firebaseapp.com',
+    storageBucket: 'notification-somo.appspot.com',
+    measurementId: 'G-S51D5K7BXX',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCHs493yNWhNNPwo7nRBm9EZT_I6Re2GBU',
-    appId: '1:118109128001:android:c641b5e3efde3c82b20dc0',
-    messagingSenderId: '118109128001',
-    projectId: 'nebula-55342',
-    storageBucket: 'nebula-55342.appspot.com',
+    apiKey: 'AIzaSyC48JETJ8y9Ej6lqjmFRcB8VuKAoOlbGOw',
+    appId: '1:941391211804:android:f51e54834b480d112c9ed9',
+    messagingSenderId: '941391211804',
+    projectId: 'notification-somo',
+    storageBucket: 'notification-somo.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(

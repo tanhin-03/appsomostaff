@@ -1,6 +1,8 @@
-import 'package:flutter/material.dart';
 
-import '../Pages/booking_page.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+import '../Pages/booking_room.dart';
 import '../Pages/bottom_navbar.dart';
 import '../models/room.dart';
 
@@ -11,6 +13,7 @@ class ElysiumColony extends StatefulWidget {
 
   @override
   _ElysiumColonyState createState() => _ElysiumColonyState();
+
 }
 
 class _ElysiumColonyState extends State<ElysiumColony> {
@@ -702,10 +705,10 @@ class _ElysiumColonyState extends State<ElysiumColony> {
                 children: [
                   ElevatedButton(
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => NavBar()),
-                      );
+                      // Navigator.push(
+                      //   context,
+                      //   MaterialPageRoute(builder: (context) => NavBar()),
+                      // );
                     },
                     child: Text('Đã đặt'),
                     style: ElevatedButton.styleFrom(
@@ -719,10 +722,10 @@ class _ElysiumColonyState extends State<ElysiumColony> {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => Booking()),
-                      );
+                      // Navigator.push(
+                        // context,
+                        // MaterialPageRoute(builder: (context) => Booking(room: room)),
+                      // );
                     },
                     child: Text('Book Your Tour'),
                     style: ElevatedButton.styleFrom(

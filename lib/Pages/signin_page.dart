@@ -24,13 +24,16 @@ class _SignInPageState extends State<SignInPage> {
   List<Account> _accounts = [];
 
   Future<void> _readJsonFile() async {
-    final response = await http.get(Uri.parse('https://jsonserver-two.vercel.app/account'));
+    final response =
+        await http.get(Uri.parse('https://jsonserver-two.vercel.app/account'));
 
     if (response.statusCode == 200) {
       final jsonData = jsonDecode(response.body);
-      final accountsJson = jsonData['account']; // Get the "accounts" array from the JSON object
+      final accountsJson =
+          jsonData['account']; // Get the "accounts" array from the JSON object
       setState(() {
-        _accounts = (accountsJson as List).map((e) => Account.fromJson(e)).toList();
+        _accounts =
+            (accountsJson as List).map((e) => Account.fromJson(e)).toList();
       });
     } else {
       print('Failed to load accounts: ${response.statusCode}');
@@ -58,11 +61,8 @@ class _SignInPageState extends State<SignInPage> {
             ElevatedButton(
               onPressed: () {
                 Navigator.of(ctx).pop();
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const NavBar()));
-
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const NavBar()));
               },
               child: Text("OK"),
             ),
@@ -120,13 +120,13 @@ class _SignInPageState extends State<SignInPage> {
               child: Text(
                 'Sign In',
                 style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 40,
+                    color: Colors.blueAccent,
+                    fontSize: 50,
                     fontWeight: FontWeight.w900),
               ),
             ),
             const SizedBox(
-              height: 16,
+              height: 1,
             ),
             const FittedBox(
               child: Row(
@@ -135,15 +135,15 @@ class _SignInPageState extends State<SignInPage> {
                     padding: EdgeInsets.only(left: 16, right: 8),
                     child: Text('Hello ',
                         style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20,
-                            fontWeight: FontWeight.w300)),
+                            color: Colors.black87,
+                            fontSize: 30,
+                            fontWeight: FontWeight.w500)),
                   ),
                   Padding(
                     padding: EdgeInsets.only(right: 16),
                     child: Text('Somo Staff',
                         style: TextStyle(
-                            color: Colors.black,
+                            color: Colors.lightBlueAccent,
                             fontSize: 20,
                             fontWeight: FontWeight.w600)),
                   ),
@@ -151,7 +151,7 @@ class _SignInPageState extends State<SignInPage> {
               ),
             ),
             const SizedBox(
-              height: 30,
+              height: 10,
             ),
             Padding(
               padding: const EdgeInsets.all(20.0),
@@ -164,8 +164,8 @@ class _SignInPageState extends State<SignInPage> {
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10)),
                           hintText: 'Username',
-                          hintStyle:
-                          const TextStyle(color: Colors.grey, fontSize: 20)),
+                          hintStyle: const TextStyle(
+                              color: Colors.grey, fontSize: 20)),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Please enter username';
@@ -182,8 +182,8 @@ class _SignInPageState extends State<SignInPage> {
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10)),
                           hintText: 'Password',
-                          hintStyle:
-                          const TextStyle(color: Colors.grey, fontSize: 20)),
+                          hintStyle: const TextStyle(
+                              color: Colors.grey, fontSize: 20)),
                       obscureText: true,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -224,7 +224,8 @@ class _SignInPageState extends State<SignInPage> {
                           ),
                           child: const Text(
                             'Sign In',
-                            style: TextStyle(fontSize: 20),
+                            style:
+                                TextStyle(fontSize: 20, color: Colors.white54),
                           ),
                         ),
                       ),
@@ -232,7 +233,6 @@ class _SignInPageState extends State<SignInPage> {
                     const SizedBox(
                       height: 20,
                     ),
-
                   ],
                 ),
               ),
@@ -257,9 +257,9 @@ class _SignInPageState extends State<SignInPage> {
                     child: const Text(
                       ' Sign Up',
                       style: TextStyle(
-                        fontSize: 18,
-                        color: Colors.blue,
-                      ),
+                          fontSize: 20,
+                          color: Colors.blue,
+                          fontWeight: FontWeight.w500),
                     ),
                   ),
                 ],

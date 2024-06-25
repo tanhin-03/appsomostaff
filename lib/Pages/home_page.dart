@@ -23,21 +23,6 @@ class _HomePageState extends State<HomePage> {
     'Phòng Cửu Long',
   ];
 
-  DateTime? selectedDate;
-
-  // Future<void> _selectDate(BuildContext context) async {
-  //   final DateTime? pickedDate = await showDatePicker(
-  //     context: context,
-  //     initialDate: DateTime.now(),
-  //     firstDate: DateTime(2003),
-  //     lastDate: DateTime(2160),
-  //   );
-  //   if (pickedDate != null) {
-  //     setState(() {
-  //       selectedDate = pickedDate;
-  //     });
-  //   }
-  // }
 
   final TextEditingController _searchController = TextEditingController();
 
@@ -53,19 +38,36 @@ class _HomePageState extends State<HomePage> {
             room.roomName!.toLowerCase().contains(searchQuery.toLowerCase()))
         .toList();
 
-    // Show a dialog with the search results
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text('Search Results'),
+        title: Text('Kết quả tìm kiếm.'),
         content: filteredRooms.isEmpty
-            ? Text('No rooms found')
-            : ListTile(
-                title: Text(filteredRooms[0].roomName!),
-                subtitle: Text(filteredRooms[0].description!),
+            ? Text('Không tìm thấy phòng nào!')
+            : Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start, // Set the main axis size to min
+          children: [
+            ListTile(
+              title: Text(filteredRooms[0].roomName!, style:
+              TextStyle(
+                  color: Colors.blue,
+                  fontWeight: FontWeight.w500
               ),
+              ),
+            ),
+            Text('Chi tiết: ${filteredRooms[0].areaDetails}.'),
+            Text('Khu vực: ${filteredRooms[0].areaName}'),
+            Text('Giá: ${filteredRooms[0].roomPrice}'),
+            Text('Tiện nghi: ${filteredRooms[0].amenities}.'),
+            Text('Trạng thái: ${filteredRooms[0].roomStatus}'),
+            // Add more features here
+          ],
+        ),
       ),
     );
+
+
   }
 
   @override
@@ -101,7 +103,7 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     const SizedBox(height: 12),
                     const Text(
-                      "Find Room",
+                      "Tìm phòng",
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
@@ -130,8 +132,8 @@ class _HomePageState extends State<HomePage> {
                             // controller: fieldTextEditingController,
                             focusNode: fieldFocusNode,
                             decoration: InputDecoration(
-                              labelText: "Name",
-                              hintText: "Select a space station",
+                              labelText: "Tên",
+                              hintText: "Nhập tên phòng",
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(16.0),
                                 borderSide: BorderSide(color: Colors.blue),
@@ -164,7 +166,7 @@ class _HomePageState extends State<HomePage> {
                               ),
                               SizedBox(width: 8),
                               Text(
-                                'Search',
+                                'Tìm',
                                 style: TextStyle(
                                     fontSize: 16.0, color: Colors.white),
                               ),
@@ -204,7 +206,7 @@ class _HomePageState extends State<HomePage> {
                       child: Padding(
                         padding: EdgeInsets.only(top: displayWidth * .025),
                         child: Text(
-                          'Room List',
+                          'Danh sách phòng',
                           style: TextStyle(
                             fontSize: displayWidth * .05,
                             fontWeight: FontWeight.bold,
@@ -288,7 +290,7 @@ class _HomePageState extends State<HomePage> {
                       child: Padding(
                         padding: EdgeInsets.only(top: displayWidth * .025),
                         child: Text(
-                          'Tent List',
+                          'Danh sách lều',
                           style: TextStyle(
                             fontSize: displayWidth * .05,
                             fontWeight: FontWeight.bold,

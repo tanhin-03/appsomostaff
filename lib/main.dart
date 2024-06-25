@@ -1,11 +1,23 @@
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:test_footer/firebase_api.dart';
 import 'package:test_footer/test/signin_page.dart';
+import 'package:test_footer/viewstest/viewhometest.dart';
 
 import 'Pages/home_page.dart';
 import 'Pages/signin_page.dart';
+import 'firebase_options.dart';
 
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await FirebaseApi().initNotifications();
+
+  FirebaseApi firebaseApi = FirebaseApi();
+  firebaseApi.initNotifications();
+
   runApp(MyApp());
 }
 
@@ -17,13 +29,16 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'App Somo Staff',
       home: SignInPage(),
       // home: HomePage(),
+      // home: SearchPage(),
     );
   }
 }

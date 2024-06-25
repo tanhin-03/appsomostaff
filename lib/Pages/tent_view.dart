@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:test_footer/models/room.dart';
 import '../controller.dart';
 import '../models/tent.dart';
-import '/pages/booking_page.dart';
 import '/pages/bottom_navbar.dart';
+import 'booking_tent.dart';
 
 class ElysiumColony2 extends StatefulWidget {
   final HomestayTent tent;
 
   ElysiumColony2({required this.tent});
-
 
   @override
   _ElysiumColony2State createState() => _ElysiumColony2State();
@@ -142,7 +140,7 @@ class _ElysiumColony2State extends State<ElysiumColony2> {
                             SizedBox(
                               width: 370,
                               child: Text(
-                                widget.tent.description?? '',
+                                widget.tent.description ?? '',
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 16,
@@ -221,49 +219,39 @@ class _ElysiumColony2State extends State<ElysiumColony2> {
                                   ],
                                 ),
                               ),
-                              const SizedBox(width: 16),
-                              const Column(
+                              SizedBox(width: 16),
+                              Column(
                                 mainAxisSize: MainAxisSize.min,
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    '7 months',
+                                    'Loại phòng: ${widget.tent.typeName}' ?? '',
                                     style: TextStyle(
                                       color: Colors.black,
-                                      fontSize: 14,
+                                      fontSize: 20,
                                       fontFamily: 'Inter',
                                       fontWeight: FontWeight.w500,
                                       height: 1.10,
                                     ),
                                   ),
-                                  SizedBox(height: 3),
+                                  SizedBox(height: 10),
                                   Text(
-                                    '24,600 mph',
+                                    'Khu vực: ${widget.tent.areaName}' ?? '',
                                     style: TextStyle(
                                       color: Colors.black,
-                                      fontSize: 14,
+                                      fontSize: 20,
                                       fontFamily: 'Inter',
                                       fontWeight: FontWeight.w500,
                                       height: 1.10,
                                     ),
                                   ),
-                                  SizedBox(height: 3),
+                                  SizedBox(height: 10),
                                   Text(
-                                    'Ban công',
+                                    'Giá: ${widget.tent.roomPrice}' ?? '',
                                     style: TextStyle(
                                       color: Colors.black,
-                                      fontSize: 14,
-                                      fontFamily: 'Inter',
-                                      fontWeight: FontWeight.w500,
-                                      height: 1.10,
-                                    ),
-                                  ),
-                                  Text(
-                                    'View hồ trung tâm',
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 14,
+                                      fontSize: 20,
                                       fontFamily: 'Inter',
                                       fontWeight: FontWeight.w500,
                                       height: 1.10,
@@ -348,7 +336,7 @@ class _ElysiumColony2State extends State<ElysiumColony2> {
                     const Row(
                       children: [
                         Text(
-                          'Climate',
+                          'Thời tiết',
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 20,
@@ -366,43 +354,6 @@ class _ElysiumColony2State extends State<ElysiumColony2> {
                       decoration: const BoxDecoration(
                         image: DecorationImage(
                           image: AssetImage("assets/images/climate.png"),
-                          fit: BoxFit.fill,
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ),
-
-            // Population chart container
-            Padding(
-              padding: EdgeInsets.all(displayWidth * .05),
-              child: SizedBox(
-                width: displayWidth,
-                child: Column(
-                  children: [
-                    const Row(
-                      children: [
-                        Text(
-                          'Population Chart',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20,
-                            fontFamily: 'Inter',
-                            fontWeight: FontWeight.w700,
-                            height: 1.10,
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 20),
-                    Container(
-                      width: displayWidth,
-                      height: displayWidth * 0.35,
-                      decoration: const BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage("assets/images/population.png"),
                           fit: BoxFit.fill,
                         ),
                       ),
@@ -430,7 +381,7 @@ class _ElysiumColony2State extends State<ElysiumColony2> {
                           child: const Row(
                             children: [
                               Text(
-                                'Luggage Information',
+                                'Thông tin hành lý',
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 20,
@@ -531,7 +482,8 @@ class _ElysiumColony2State extends State<ElysiumColony2> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const Booking()));
+                          builder: (context) => Booking2(tent: widget.tent),
+                        ));
                   },
                   child: Container(
                       decoration: BoxDecoration(

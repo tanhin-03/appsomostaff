@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-
-import '../test/signin_page.dart';
 import 'home_page.dart';
 import 'notifications_page.dart';
 import 'signin_page.dart';
@@ -87,31 +85,35 @@ class MyAccountPage extends StatelessWidget {
                         ),
                       ),
                     ),
-                    // SizedBox(width: spaceBetweenButtons),
-                    // Material(
-                    //   elevation: 2.0,
-                    //   borderRadius: BorderRadius.circular(20.0),
-                    //   child: InkWell(
-                    //     onTap: () {
-                    //       Navigator.push(context, MaterialPageRoute(builder: (context) => const NotificationsPage()));
-                    //     },
-                    //     child: Container(
-                    //       width: accountButtonHeight,
-                    //       height: accountButtonHeight,
-                    //       decoration: BoxDecoration(
-                    //         color: const Color.fromARGB(255, 255, 255, 255),
-                    //         borderRadius: BorderRadius.circular(20.0),
-                    //       ),
-                    //       child: const Center(
-                    //         child: ImageIcon(
-                    //           AssetImage('assets/images/bell.png'),
-                    //           color: Colors.blue,
-                    //           size: 32,
-                    //         ),
-                    //       ),
-                    //     ),
-                    //   ),
-                    // ),
+                    SizedBox(width: spaceBetweenButtons),
+                    Material(
+                      elevation: 2.0,
+                      borderRadius: BorderRadius.circular(20.0),
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      NotificationsPage()));
+                        },
+                        child: Container(
+                          width: accountButtonHeight,
+                          height: accountButtonHeight,
+                          decoration: BoxDecoration(
+                            color: const Color.fromARGB(255, 255, 255, 255),
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
+                          child: const Center(
+                            child: ImageIcon(
+                              AssetImage('assets/images/bell.png'),
+                              color: Colors.blue,
+                              size: 30,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),

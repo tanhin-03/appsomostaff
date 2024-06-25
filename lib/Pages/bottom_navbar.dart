@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '/pages/my_account.dart';
-import 'home_page.dart';
 import 'celander.dart';
+import 'home_page.dart';
 
 class NavBar extends StatefulWidget {
   const NavBar({super.key});
@@ -153,14 +153,12 @@ class NavBarState extends State<NavBar> {
   final List<Image> _bottomNavBarIcons = [
     Image.asset('assets/icons/home.png', width: 32, height: 24),
     Image.asset('assets/icons/booking.png', width: 32, height: 24),
-    // Image.asset('assets/icons/saves.png', width: 24, height: 24),
     Image.asset('assets/icons/profile.png', width: 32, height: 24),
   ];
 
   List<String> listOfStrings = [
     'Home',
     'Calender',
-    // 'Saves',
     'Account',
   ];
 

@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
-import 'bottom_navbar.dart';
-import '/pages/payment_page.dart';
+import '../models/room.dart';
 
-class Booking extends StatelessWidget {
-  const Booking({super.key});
+class Booking extends StatefulWidget {
+  final HotelRoom room;
 
+  Booking({required this.room});
+
+  @override
+  _Booking createState() => _Booking();
+}
+
+class _Booking extends State<Booking> {
   @override
   Widget build(BuildContext context) {
     double displayWidth = MediaQuery.of(context).size.width;
@@ -14,7 +20,7 @@ class Booking extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 255, 255, 255),
         title: const Text(
-          'Room List',
+          'Phòng',
           style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
         ),
         iconTheme: IconThemeData(color: Colors.black),
@@ -87,8 +93,7 @@ class Booking extends StatelessWidget {
                                         // Replace Text with TextField
                                         decoration: InputDecoration(
                                           border: InputBorder.none,
-                                          hintText:
-                                              'User Name', // Placeholder text
+                                          hintText: 'Tên', // Placeholder text
                                           hintStyle: TextStyle(
                                             color:
                                                 Colors.black.withOpacity(0.5),
@@ -120,8 +125,7 @@ class Booking extends StatelessWidget {
                                         // Replace Text with TextField
                                         decoration: InputDecoration(
                                           border: InputBorder.none,
-                                          hintText:
-                                              'Phone', // Placeholder text
+                                          hintText: 'SĐT', // Placeholder text
                                           hintStyle: TextStyle(
                                             color:
                                                 Colors.black.withOpacity(0.5),
@@ -186,8 +190,7 @@ class Booking extends StatelessWidget {
                                         // Replace Text with TextField
                                         decoration: InputDecoration(
                                           border: InputBorder.none,
-                                          hintText:
-                                              'Role No.', // Placeholder text
+                                          hintText: 'CCCD', // Placeholder text
                                           hintStyle: TextStyle(
                                             color:
                                                 Colors.black.withOpacity(0.5),
@@ -220,7 +223,7 @@ class Booking extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const Text(
-                        'Ticket Prices',
+                        'Thanh toán',
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 20,
@@ -234,13 +237,13 @@ class Booking extends StatelessWidget {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              const Column(
+                              Column(
                                 mainAxisSize: MainAxisSize.min,
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'For one ticket',
+                                    'Giá',
                                     style: TextStyle(
                                       color: Colors.black,
                                       fontSize: 14,
@@ -250,7 +253,7 @@ class Booking extends StatelessWidget {
                                   ),
                                   SizedBox(height: 8),
                                   Text(
-                                    'No of tickets',
+                                    'Số lượng',
                                     style: TextStyle(
                                       color: Colors.black,
                                       fontSize: 14,
@@ -260,7 +263,7 @@ class Booking extends StatelessWidget {
                                   ),
                                   SizedBox(height: 8),
                                   Text(
-                                    'Space Tax',
+                                    'Thuế',
                                     style: TextStyle(
                                       color: Colors.black,
                                       fontSize: 14,
@@ -272,13 +275,13 @@ class Booking extends StatelessWidget {
                               ),
                               const SizedBox(width: 159),
                               Container(
-                                child: const Column(
+                                child: Column(
                                   mainAxisSize: MainAxisSize.min,
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   children: [
                                     Text(
-                                      '\$ 250 000',
+                                      widget.room.roomPrice ?? '',
                                       style: TextStyle(
                                         color: Colors.black,
                                         fontSize: 14,
@@ -288,7 +291,7 @@ class Booking extends StatelessWidget {
                                     ),
                                     SizedBox(height: 8),
                                     Text(
-                                      '4',
+                                      '1',
                                       style: TextStyle(
                                         color: Colors.black,
                                         fontSize: 14,
@@ -298,7 +301,10 @@ class Booking extends StatelessWidget {
                                     ),
                                     SizedBox(height: 8),
                                     Text(
-                                      '\$ 20 000',
+                                      (double.parse(widget.room.roomPrice ??
+                                                  '0') *
+                                              0.1)
+                                          .toString(),
                                       style: TextStyle(
                                         color: Colors.black,
                                         fontSize: 14,
@@ -313,11 +319,11 @@ class Booking extends StatelessWidget {
                           ),
                           const SizedBox(height: 16),
                           Container(
-                            child: const Row(
+                            child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  'Total',
+                                  'Tổng',
                                   style: TextStyle(
                                     color: Colors.black,
                                     fontSize: 16,
@@ -327,7 +333,11 @@ class Booking extends StatelessWidget {
                                 ),
                                 SizedBox(width: 186),
                                 Text(
-                                  '\$ 1 020 000',
+                                  (double.parse(widget.room.roomPrice ?? '0') *
+                                              0.1 +
+                                          double.parse(
+                                              widget.room.roomPrice ?? '0'))
+                                      .toString(),
                                   style: TextStyle(
                                     color: Colors.black,
                                     fontSize: 16,
@@ -344,106 +354,9 @@ class Booking extends StatelessWidget {
                   ),
                 ),
               ),
-
               const SizedBox(height: 150),
             ],
           ),
-          // Positioned(
-          //   left: 0,
-          //   right: 0,
-          //   bottom: 0,
-          //   child: Container(
-          //     height: 120,
-          //     padding: EdgeInsets.all(displayWidth * .05),
-          //     decoration: const BoxDecoration(
-          //       gradient: LinearGradient(
-          //         colors: [
-          //           Color.fromARGB(239, 0, 32, 50),
-          //           Color.fromARGB(230, 150, 168, 255),
-          //         ],
-          //         begin: Alignment.centerLeft,
-          //         end: Alignment.centerRight,
-          //       ),
-          //     ),
-          //     child: Row(
-          //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //       children: [
-          //         // Cancer Button
-          //         ElevatedButton(
-          //           onPressed: () {
-          //             Navigator.push(
-          //                 context,
-          //                 MaterialPageRoute(
-          //                     builder: (context) => const NavBar()));
-          //           },
-          //           style: ElevatedButton.styleFrom(
-          //             backgroundColor: Colors.white,
-          //             minimumSize: Size(displayWidth * .44, displayWidth * .16),
-          //             shape: RoundedRectangleBorder(
-          //               borderRadius: BorderRadius.circular(50.0),
-          //               side: const BorderSide(
-          //                   color: Color.fromARGB(255, 0, 73, 255)),
-          //             ),
-          //           ),
-          //           child: const Text(
-          //             'Cancel',
-          //             style: TextStyle(
-          //                 color: Color.fromARGB(255, 0, 73, 255),
-          //                 fontSize: 16,
-          //                 fontWeight: FontWeight.w800),
-          //           ),
-          //         ),
-          //
-          //         // Book Your Tour Button (Gradient Button)
-          //         InkWell(
-          //           onTap: () {
-          //             Navigator.push(
-          //                 context,
-          //                 MaterialPageRoute(
-          //                     builder: (context) => const Payment()));
-          //           },
-          //           child: Container(
-          //             decoration: BoxDecoration(
-          //               boxShadow: [
-          //                 BoxShadow(
-          //                   color: Colors.black.withOpacity(0.2),
-          //                   spreadRadius: 2,
-          //                   blurRadius: 4,
-          //                   offset: const Offset(0, 2),
-          //                 ),
-          //               ],
-          //               gradient: const LinearGradient(
-          //                 colors: [
-          //                   Color.fromARGB(255, 0, 73, 255),
-          //                   Color.fromARGB(255, 162, 221, 255),
-          //                 ],
-          //                 begin: Alignment.centerLeft,
-          //                 end: Alignment.centerRight,
-          //               ),
-          //               borderRadius: BorderRadius.circular(50.0),
-          //             ),
-          //             width: displayWidth * 0.44,
-          //             height: displayWidth * 0.16,
-          //             padding: EdgeInsets.symmetric(
-          //               horizontal: displayWidth * 0.1,
-          //               vertical: displayWidth * 0.04,
-          //             ),
-          //             child: const Center(
-          //               child: Text(
-          //                 'Pay',
-          //                 style: TextStyle(
-          //                   color: Colors.white,
-          //                   fontSize: 16,
-          //                   fontWeight: FontWeight.bold,
-          //                 ),
-          //               ),
-          //             ),
-          //           ),
-          //         ),
-          //       ],
-          //     ),
-          //   ),
-          // ),
         ],
       ),
     );

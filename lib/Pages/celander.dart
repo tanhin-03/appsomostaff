@@ -1,14 +1,8 @@
 import 'package:flutter/material.dart';
-import '../models/room.dart';
 import 'home_page.dart';
-import 'room_view.dart';
 
 class CelanderPage extends StatefulWidget {
   const CelanderPage({super.key});
-
-  // final HotelRoom room;
-  //
-  // CelanderPage({required this.room});
 
   @override
   State<CelanderPage> createState() => _CelanderPageState();
@@ -32,6 +26,7 @@ class _CelanderPageState extends State<CelanderPage> {
     }
   }
 
+
   @override
   Widget build(BuildContext context) {
     double displayWidth = MediaQuery.of(context).size.width;
@@ -52,13 +47,14 @@ class _CelanderPageState extends State<CelanderPage> {
                       readOnly: true,
                       onTap: () => _selectDate(context),
                       decoration: InputDecoration(
-                        labelText: 'Select Date',
+                        labelText: 'Chọn ngày',
                         labelStyle: const TextStyle(color: Colors.blue),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(16.0),
                         ),
                       ),
-                      controller: TextEditingController(
+                      controller:
+                      TextEditingController(
                         text: selectedDate != null
                             ? '${selectedDate!.year}-${selectedDate!.month}-${selectedDate!.day}'
                             : '',
@@ -66,19 +62,6 @@ class _CelanderPageState extends State<CelanderPage> {
                     ),
                   ),
                   const SizedBox(width: 16),
-
-                  // const SizedBox(width: 16),
-                  // Expanded(
-                  //   child: TextFormField(
-                  //     decoration: InputDecoration(
-                  //       labelText: 'Passengers',
-                  //       hintText: "Number of passengers",
-                  //       border: OutlineInputBorder(
-                  //         borderRadius: BorderRadius.circular(16.0),
-                  //       ),
-                  //     ),
-                  //   ),
-                  // ),
                 ],
               ),
             ),
@@ -90,11 +73,11 @@ class _CelanderPageState extends State<CelanderPage> {
                   //     context,
                   //     MaterialPageRoute(
                   //         builder: (context) =>  ElysiumColony(room: room)));
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text('Không tìm thấy thông tin'),
-                      ),
-                    );
+                  //   ScaffoldMessenger.of(context).showSnackBar(
+                  //     SnackBar(
+                  //       content: Text('Không tìm thấy phòng'),
+                  //     ),
+                  //   );
                 },
                 height: 55.0,
                 child: const Row(
@@ -107,7 +90,7 @@ class _CelanderPageState extends State<CelanderPage> {
                     ),
                     SizedBox(width: 8),
                     Text(
-                      'Search',
+                      'Tìm',
                       style: TextStyle(
                           fontSize: 16.0, color: Colors.white),
                     ),

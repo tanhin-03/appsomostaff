@@ -1,11 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../Pages/home_page.dart';
-// import '../Pages/room_view.dart';
 import '../Pages/room_view.dart';
 import '../models/room.dart';
-import '../Pages/tent_view.dart';
-// import '../views/roomtest2.dart';
 
 class RoomItem extends StatelessWidget {
   final HotelRoom room;
@@ -17,7 +14,7 @@ class RoomItem extends StatelessWidget {
     return LocationButton(
       imageAsset: 'assets/images/gallery1.jpg',
       title: room.roomName!,
-      description: 'Destination',
+      description: 'Điểm đến',
       onTap: () {
         Navigator.push(
           context,
