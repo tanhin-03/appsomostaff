@@ -1,12 +1,14 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:test_footer/Pages/signin_page.dart';
 import 'package:test_footer/firebase_api.dart';
-import 'package:test_footer/test/signin_page.dart';
+import 'package:test_footer/test/booking.dart';
+// import 'package:test_footer/test/signin_page.dart';
 import 'package:test_footer/viewstest/viewhometest.dart';
 
 import 'Pages/home_page.dart';
-import 'Pages/signin_page.dart';
+// import 'Pages/signin_page.dart';
 import 'firebase_options.dart';
 
 
@@ -17,6 +19,8 @@ void main() async {
 
   FirebaseApi firebaseApi = FirebaseApi();
   firebaseApi.initNotifications();
+
+  await Firebase.initializeApp();
 
   runApp(MyApp());
 }
@@ -38,7 +42,7 @@ class _MyAppState extends State<MyApp> {
       title: 'App Somo Staff',
       home: SignInPage(),
       // home: HomePage(),
-      // home: SearchPage(),
+      // home: CelanderPage(),
     );
   }
 }

@@ -42,7 +42,7 @@ class _CelanderPageState extends State<CelanderPage> {
 
   Future<List<dynamic>> _filterCustomersByDate(DateTime date) async {
     final response =
-    await http.get(Uri.parse('https://jsonserver-two.vercel.app/customer'));
+        await http.get(Uri.parse('https://jsonserver-two.vercel.app/customer'));
     final jsonData = jsonDecode(response.body);
     final customers = jsonData['customers'];
     final filteredCustomers = customers.where((customer) {
@@ -58,7 +58,7 @@ class _CelanderPageState extends State<CelanderPage> {
 
   Future<List<dynamic>> _getAllCustomers() async {
     final response =
-    await http.get(Uri.parse('https://jsonserver-two.vercel.app/customer'));
+        await http.get(Uri.parse('https://jsonserver-two.vercel.app/customer'));
     final jsonData = jsonDecode(response.body);
     return jsonData['customers'];
   }
@@ -88,13 +88,13 @@ class _CelanderPageState extends State<CelanderPage> {
                       ),
                       suffixIcon: selectedDate != null
                           ? IconButton(
-                        icon: Icon(Icons.clear),
-                        onPressed: () {
-                          setState(() {
-                            selectedDate = null;
-                          });
-                        },
-                      )
+                              icon: Icon(Icons.clear),
+                              onPressed: () {
+                                setState(() {
+                                  selectedDate = null;
+                                });
+                              },
+                            )
                           : null,
                     ),
                     controller: TextEditingController(
@@ -133,41 +133,41 @@ class _CelanderPageState extends State<CelanderPage> {
           ),
           customers.isEmpty
               ? Center(
-            child: Text('Không có thông tin'),
-          )
+                  child: Text('Không có thông tin'),
+                )
               : ListView.builder(
-            shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
-            itemCount: customers.length,
-            itemBuilder: (context, index) {
-              final customer = customers[index];
-              return GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => CustomerDetailPage(
-                            customer: Customer.fromJson(customer))),
-                  );
-                },
-                child: Card(
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text('Tên khách hàng : ${customer['lastName']}'),
-                        SizedBox(height: 8),
-                        Text('Email: ${customer['email']}'),
-                        SizedBox(height: 8),
-                        Text('Phòng: ${customer['roomID']}'),
-                      ],
-                    ),
-                  ),
-                ),
-              );
-            },
-          )
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  itemCount: customers.length,
+                  itemBuilder: (context, index) {
+                    final customer = customers[index];
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => CustomerDetailPage(
+                                  customer: Customer.fromJson(customer))),
+                        );
+                      },
+                      child: Card(
+                        child: Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('Tên khách hàng : ${customer['lastName']}'),
+                              SizedBox(height: 8),
+                              Text('Email: ${customer['email']}'),
+                              SizedBox(height: 8),
+                              Text('Phòng: ${customer['roomID']}'),
+                            ],
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                )
         ],
       ),
     );

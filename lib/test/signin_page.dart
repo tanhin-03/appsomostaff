@@ -1,38 +1,46 @@
 import 'dart:convert';
-
+import 'package:http/http.dart' as http;
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:test_footer/Pages/signup_page.dart';
 import '../models/account.dart';
 import '/pages/bottom_navbar.dart';
 
-@override
-SignInPage2 createState() => SignInPage2();
+// @override
+// SignInPage createState() => SignInPage();
 
-class SignInPage2 extends StatefulWidget {
-  SignInPage2({super.key});
+class SignInPage extends StatefulWidget {
+  SignInPage({super.key});
 
   @override
-  State<SignInPage2> createState() => _SignInPage2State();
+  State<SignInPage> createState() => _SignInPageState();
 }
 
-class _SignInPage2State extends State<SignInPage2> {
+class _SignInPageState extends State<SignInPage> {
   final _formKey = GlobalKey<FormState>();
   String _username = '';
   String _password = '';
   List<Account> _accounts = [];
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
   Future<void> _readJsonFile() async {
-    final String response =
-        await rootBundle.loadString('assets/data/data.json');
-    final productData = await json.decode(response);
+    final response =
+    await http.get(Uri.parse('https://jsonserver-two.vercel.app/account'));
 
-    var list = productData["account"] as List<dynamic>;
-
-    setState(() {
-      _accounts = list.map((e) => Account.fromJson(e)).toList();
-    });
+    if (response.statusCode == 200) {
+      final jsonData = jsonDecode(response.body);
+      final accountsJson =
+      jsonData['account']; // Get the "accounts" array from the JSON object
+      setState(() {
+        _accounts =
+            (accountsJson as List).map((e) => Account.fromJson(e)).toList();
+      });
+    } else {
+      print('Failed to load accounts: ${response.statusCode}');
+    }
   }
 
   void _checkLogin() async {
@@ -56,11 +64,8 @@ class _SignInPage2State extends State<SignInPage2> {
             ElevatedButton(
               onPressed: () {
                 Navigator.of(ctx).pop();
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const NavBar()));
-
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const NavBar()));
               },
               child: Text("OK"),
             ),
@@ -83,6 +88,25 @@ class _SignInPage2State extends State<SignInPage2> {
           ],
         ),
       );
+    }
+  }
+
+  Future<void> _googleSignInButton() async {
+    try {
+      await _googleSignIn.signIn();
+      final GoogleSignInAccount? googleUser = _googleSignIn.currentUser;
+      final GoogleSignInAuthentication? googleAuth =
+      await googleUser?.authentication;
+
+      final credential = GoogleAuthProvider.credential(
+        idToken: googleAuth?.idToken,
+        accessToken: googleAuth?.accessToken,
+      );
+
+      await _auth.signInWithCredential(credential);
+      Navigator.push(context, MaterialPageRoute(builder: (context) => const NavBar()));
+    } catch (e) {
+      print('Error signing in with Google: $e');
     }
   }
 
@@ -118,13 +142,13 @@ class _SignInPage2State extends State<SignInPage2> {
               child: Text(
                 'Sign In',
                 style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 40,
+                    color: Colors.blueAccent,
+                    fontSize: 50,
                     fontWeight: FontWeight.w900),
               ),
             ),
             const SizedBox(
-              height: 16,
+              height: 1,
             ),
             const FittedBox(
               child: Row(
@@ -133,15 +157,15 @@ class _SignInPage2State extends State<SignInPage2> {
                     padding: EdgeInsets.only(left: 16, right: 8),
                     child: Text('Hello ',
                         style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20,
-                            fontWeight: FontWeight.w300)),
+                            color: Colors.black87,
+                            fontSize: 30,
+                            fontWeight: FontWeight.w500)),
                   ),
                   Padding(
                     padding: EdgeInsets.only(right: 16),
                     child: Text('Somo Staff',
                         style: TextStyle(
-                            color: Colors.black,
+                            color: Colors.lightBlueAccent,
                             fontSize: 20,
                             fontWeight: FontWeight.w600)),
                   ),
@@ -149,7 +173,7 @@ class _SignInPage2State extends State<SignInPage2> {
               ),
             ),
             const SizedBox(
-              height: 30,
+              height: 10,
             ),
             Padding(
               padding: const EdgeInsets.all(20.0),
@@ -160,10 +184,10 @@ class _SignInPage2State extends State<SignInPage2> {
                     TextFormField(
                       decoration: InputDecoration(
                           border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10)),
+                              borderRadius: BorderRadius.circular(10)),
                           hintText: 'Username',
-                          hintStyle:
-                          const TextStyle(color: Colors.grey, fontSize: 20)),
+                          hintStyle: const TextStyle(
+                              color: Colors.grey, fontSize: 20)),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Please enter username';
@@ -172,13 +196,16 @@ class _SignInPage2State extends State<SignInPage2> {
                       },
                       onSaved: (value) => _username = value!,
                     ),
+                    const SizedBox(
+                      height: 15,
+                    ),
                     TextFormField(
                       decoration: InputDecoration(
                           border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10)),
+                              borderRadius: BorderRadius.circular(10)),
                           hintText: 'Password',
-                          hintStyle:
-                          const TextStyle(color: Colors.grey, fontSize: 20)),
+                          hintStyle: const TextStyle(
+                              color: Colors.grey, fontSize: 20)),
                       obscureText: true,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -219,7 +246,8 @@ class _SignInPage2State extends State<SignInPage2> {
                           ),
                           child: const Text(
                             'Sign In',
-                            style: TextStyle(fontSize: 20),
+                            style:
+                            TextStyle(fontSize: 20, color: Colors.white54),
                           ),
                         ),
                       ),
@@ -227,7 +255,6 @@ class _SignInPage2State extends State<SignInPage2> {
                     const SizedBox(
                       height: 20,
                     ),
-
                   ],
                 ),
               ),
@@ -252,12 +279,39 @@ class _SignInPage2State extends State<SignInPage2> {
                     child: const Text(
                       ' Sign Up',
                       style: TextStyle(
-                        fontSize: 18,
-                        color: Colors.blue,
-                      ),
+                          fontSize: 20,
+                          color: Colors.blue,
+                          fontWeight: FontWeight.w500),
                     ),
                   ),
                 ],
+              ),
+            ),
+            const SizedBox(
+              height: 10,),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Center(
+                child: ElevatedButton.icon(
+                  onPressed: _googleSignInButton,
+                  icon: Image.asset(
+                    'assets/images/Google.png',
+                    width: 30,
+                    height: 30,
+                  ),
+                  label: const Text('Sign in with Google'),
+                  style: ElevatedButton.styleFrom(
+                    foregroundColor: Colors.black,
+                    backgroundColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 22,
+                      vertical: 12,
+                    ),
+                  ),
+                ),
               ),
             ),
             Container(

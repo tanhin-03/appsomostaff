@@ -183,6 +183,38 @@ class _Booking extends State<Booking> {
                                               width: 0.5,
                                               color: Color(0x7F3951EE)),
                                           borderRadius:
+                                          BorderRadius.circular(12),
+                                        ),
+                                      ),
+                                      child: TextField(
+                                        // Replace Text with TextField
+                                        decoration: InputDecoration(
+                                          border: InputBorder.none,
+                                          hintText: 'Phòng', // Placeholder text
+                                          hintStyle: TextStyle(
+                                            color:
+                                            Colors.black.withOpacity(0.5),
+                                            fontSize: 14,
+                                            fontFamily: 'Inter',
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(height: 10),
+                                    Container(
+                                      width: displayWidth * .8,
+                                      padding: const EdgeInsets.only(
+                                        left: 16,
+                                      ),
+                                      clipBehavior: Clip.antiAlias,
+                                      decoration: ShapeDecoration(
+                                        color: Colors.white,
+                                        shape: RoundedRectangleBorder(
+                                          side: const BorderSide(
+                                              width: 0.5,
+                                              color: Color(0x7F3951EE)),
+                                          borderRadius:
                                               BorderRadius.circular(12),
                                         ),
                                       ),
@@ -190,10 +222,42 @@ class _Booking extends State<Booking> {
                                         // Replace Text with TextField
                                         decoration: InputDecoration(
                                           border: InputBorder.none,
-                                          hintText: 'CCCD', // Placeholder text
+                                          hintText: 'Ngày nhận phòng', // Placeholder text
                                           hintStyle: TextStyle(
                                             color:
                                                 Colors.black.withOpacity(0.5),
+                                            fontSize: 14,
+                                            fontFamily: 'Inter',
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(height: 10),
+                                    Container(
+                                      width: displayWidth * .8,
+                                      padding: const EdgeInsets.only(
+                                        left: 16,
+                                      ),
+                                      clipBehavior: Clip.antiAlias,
+                                      decoration: ShapeDecoration(
+                                        color: Colors.white,
+                                        shape: RoundedRectangleBorder(
+                                          side: const BorderSide(
+                                              width: 0.5,
+                                              color: Color(0x7F3951EE)),
+                                          borderRadius:
+                                          BorderRadius.circular(12),
+                                        ),
+                                      ),
+                                      child: TextField(
+                                        // Replace Text with TextField
+                                        decoration: InputDecoration(
+                                          border: InputBorder.none,
+                                          hintText: 'Ngày trả phòng', // Placeholder text
+                                          hintStyle: TextStyle(
+                                            color:
+                                            Colors.black.withOpacity(0.5),
                                             fontSize: 14,
                                             fontFamily: 'Inter',
                                             fontWeight: FontWeight.w400,
@@ -280,15 +344,15 @@ class _Booking extends State<Booking> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   children: [
-                                    Text(
-                                      widget.room.roomPrice ?? '',
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 14,
-                                        fontFamily: 'Inter',
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                    ),
+                                    // Text(
+                                    //   widget.room.roomPrice ?? '',
+                                    //   style: TextStyle(
+                                    //     color: Colors.black,
+                                    //     fontSize: 14,
+                                    //     fontFamily: 'Inter',
+                                    //     fontWeight: FontWeight.w500,
+                                    //   ),
+                                    // ),
                                     SizedBox(height: 8),
                                     Text(
                                       '1',
@@ -300,18 +364,18 @@ class _Booking extends State<Booking> {
                                       ),
                                     ),
                                     SizedBox(height: 8),
-                                    Text(
-                                      (double.parse(widget.room.roomPrice ??
-                                                  '0') *
-                                              0.1)
-                                          .toString(),
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 14,
-                                        fontFamily: 'Inter',
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                    ),
+                                    // Text(
+                                    //   (double.parse(widget.room.roomPrice ??
+                                    //               '0') *
+                                    //           0.1)
+                                    //       .toString(),
+                                    //   style: TextStyle(
+                                    //     color: Colors.black,
+                                    //     fontSize: 14,
+                                    //     fontFamily: 'Inter',
+                                    //     fontWeight: FontWeight.w500,
+                                    //   ),
+                                    // ),
                                   ],
                                 ),
                               ),
@@ -332,19 +396,19 @@ class _Booking extends State<Booking> {
                                   ),
                                 ),
                                 SizedBox(width: 186),
-                                Text(
-                                  (double.parse(widget.room.roomPrice ?? '0') *
-                                              0.1 +
-                                          double.parse(
-                                              widget.room.roomPrice ?? '0'))
-                                      .toString(),
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 16,
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w700,
-                                  ),
-                                ),
+                                // Text(
+                                //   (double.parse(widget.room.roomPrice ?? '0') *
+                                //               0.1 +
+                                //           double.parse(
+                                //               widget.room.roomPrice ?? '0'))
+                                //       .toString(),
+                                //   style: TextStyle(
+                                //     color: Colors.black,
+                                //     fontSize: 16,
+                                //     fontFamily: 'Inter',
+                                //     fontWeight: FontWeight.w700,
+                                //   ),
+                                // ),
                               ],
                             ),
                           ),

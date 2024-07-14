@@ -1,4 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:test_footer/models/date.dart';
+import 'package:test_footer/models/roomAmenity.dart';
 import '../data_sources/api_services.dart';
 import '../items/roomItem.dart';
 import '../items/tentItem.dart';
@@ -7,6 +12,8 @@ import '../models/tent.dart';
 import '/pages/room_view.dart';
 import '/pages/my_account.dart';
 // import 'notifications_page.dart';
+
+import 'package:http/http.dart' as http;
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -23,7 +30,6 @@ class _HomePageState extends State<HomePage> {
     'Phòng Cửu Long',
   ];
 
-
   final TextEditingController _searchController = TextEditingController();
 
   void showSearchResults(BuildContext context) async {
@@ -38,36 +44,76 @@ class _HomePageState extends State<HomePage> {
             room.roomName!.toLowerCase().contains(searchQuery.toLowerCase()))
         .toList();
 
+    // Fetch the amenity information for each filtered room
+    List<RoomAmenity> amenities =
+        await Future.wait(filteredRooms.map((room) async {
+      final response = await http.get(Uri.parse(
+          'https://apibeswp.bellybabe.site/api/room-amenities/${room.roomID}'));
+      if (response.statusCode == 200) {
+        return (jsonDecode(response.body) as List)
+            .map((json) => RoomAmenity.fromJson(json))
+            .first;
+      } else {
+        throw Exception('Failed to load room amenities');
+      }
+    }));
+
+    // Fetch the room price information for each filtered room
+    List<RoomDate> roomPrices =
+        await Future.wait(filteredRooms.map((room) async {
+      final response = await http.get(Uri.parse(
+          'https://apibeswp.bellybabe.site/api/dates/GetDatesByDateRange?dateFrom=2024-01-01&dateTo=2024-01-01'));
+      if (response.statusCode == 200) {
+        List<RoomDate> roomDates = (jsonDecode(response.body) as List)
+            .map((json) => RoomDate.fromJson(json))
+            .toList();
+        return roomDates
+            .firstWhere((roomDate) => roomDate.roomID == room.roomID);
+      } else {
+        throw Exception('Failed to load room prices');
+      }
+    }));
+
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
         title: Text('Kết quả tìm kiếm.'),
         content: filteredRooms.isEmpty
             ? Text('Không tìm thấy phòng nào!')
-            : Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start, // Set the main axis size to min
-          children: [
-            ListTile(
-              title: Text(filteredRooms[0].roomName!, style:
-              TextStyle(
-                  color: Colors.blue,
-                  fontWeight: FontWeight.w500
+            : SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: filteredRooms.map((room) {
+                    RoomAmenity? amenity =
+                        amenities[filteredRooms.indexOf(room)];
+                    RoomDate? roomPrice = roomPrices.firstWhere(
+                        (roomPrice) => roomPrice.roomID == room.roomID);
+                    return Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        ListTile(
+                          title: Text(room.roomName!,
+                              style: TextStyle(
+                                color: Colors.blue,
+                                fontWeight: FontWeight.w900,
+                              )),
+                        ),
+                        Text('ID phòng: ${room.roomID}.'),
+                        Text('Khu vực: ${room.areaName}'),
+                        Text('Giá: ${roomPrice?.roomPrice ?? 'Không có giá'}'),
+                        Text(
+                            'Tiện nghi: ${amenity?.amenityName ?? 'Không có tiện nghi'}'),
+                        // Display the amenity name
+                        // Add more features here
+                      ],
+                    );
+                  }).toList(),
+                ),
               ),
-              ),
-            ),
-            Text('Chi tiết: ${filteredRooms[0].areaDetails}.'),
-            Text('Khu vực: ${filteredRooms[0].areaName}'),
-            Text('Giá: ${filteredRooms[0].roomPrice}'),
-            Text('Tiện nghi: ${filteredRooms[0].amenities}.'),
-            Text('Trạng thái: ${filteredRooms[0].roomStatus}'),
-            // Add more features here
-          ],
-        ),
       ),
     );
-
-
   }
 
   @override
@@ -214,7 +260,6 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                     ),
-
                     Expanded(
                       child: Container(
                         padding: EdgeInsets.only(left: 10),
@@ -249,7 +294,6 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                     ),
-
                     SizedBox(height: displayWidth * .025),
                   ],
                 ),
@@ -298,7 +342,6 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                     ),
-
                     Expanded(
                       child: Container(
                         padding: EdgeInsets.only(left: 10),
