@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:test_footer/Pages/booking_detail.dart';
 import '/pages/my_account.dart';
 import 'celander.dart';
 import 'home_page.dart';
 
 class NavBar extends StatefulWidget {
-  const NavBar({super.key});
+  const NavBar({sup, required});
 
   @override
   NavBarState createState() => NavBarState();
 }
+
+
 
 class NavBarState extends State<NavBar> {
   var currentIndex = 0;
@@ -53,10 +56,103 @@ class NavBarState extends State<NavBar> {
             ],
             borderRadius: BorderRadius.circular(20),
           ),
-          child: ListView.builder(
-            itemCount: 3,
+          child:
+          // ListView.builder(
+          //   itemCount: 3,
+          //   scrollDirection: Axis.horizontal,
+          //   padding: EdgeInsets.symmetric(horizontal: displayWidth * .06),
+          //   itemBuilder: (context, index) => InkWell(
+          //     onTap: () {
+          //       setState(() {
+          //         currentIndex = index;
+          //         _pageController.animateToPage(index,
+          //             duration: const Duration(milliseconds: 1),
+          //             curve: Curves.easeInOut);
+          //         HapticFeedback.lightImpact();
+          //       });
+          //     },
+          //     splashColor: Colors.transparent,
+          //     highlightColor: Colors.transparent,
+          //     child: Stack(
+          //       children: [
+          //         AnimatedContainer(
+          //           duration: const Duration(seconds: 1),
+          //           curve: Curves.fastLinearToSlowEaseIn,
+          //           width: index == currentIndex
+          //               ? displayWidth * .32
+          //               : displayWidth * .18,
+          //           alignment: Alignment.center,
+          //           child: AnimatedContainer(
+          //             duration: const Duration(seconds: 1),
+          //             curve: Curves.fastLinearToSlowEaseIn,
+          //             height: index == currentIndex ? displayWidth * .12 : 0,
+          //             width: index == currentIndex ? displayWidth * .32 : 0,
+          //             decoration: BoxDecoration(
+          //               color: index == currentIndex
+          //                   ? Colors.blueAccent.withOpacity(.2)
+          //                   : Colors.transparent,
+          //               borderRadius: BorderRadius.circular(16),
+          //             ),
+          //           ),
+          //         ),
+          //         AnimatedContainer(
+          //           duration: const Duration(seconds: 1),
+          //           curve: Curves.fastLinearToSlowEaseIn,
+          //           width: index == currentIndex
+          //               ? displayWidth * .31
+          //               : displayWidth * .24,
+          //           alignment: Alignment.center,
+          //           child: Stack(
+          //             children: [
+          //               Row(
+          //                 children: [
+          //                   AnimatedContainer(
+          //                     duration: const Duration(seconds: 1),
+          //                     curve: Curves.fastLinearToSlowEaseIn,
+          //                     width: index == currentIndex
+          //                         ? displayWidth * .12
+          //                         : 0,
+          //                   ),
+          //                   AnimatedOpacity(
+          //                     opacity: index == currentIndex ? 1 : 0,
+          //                     duration: const Duration(seconds: 1),
+          //                     curve: Curves.fastLinearToSlowEaseIn,
+          //                     child: Text(
+          //                       index == currentIndex
+          //                           ? listOfStrings[index]
+          //                           : '',
+          //                       style: const TextStyle(
+          //                         color: Colors.blueAccent,
+          //                         fontWeight: FontWeight.w700,
+          //                         fontSize: 12,
+          //                       ),
+          //                     ),
+          //                   ),
+          //                 ],
+          //               ),
+          //               Row(
+          //                 children: [
+          //                   AnimatedContainer(
+          //                     duration: const Duration(seconds: 1),
+          //                     curve: Curves.fastLinearToSlowEaseIn,
+          //                     width: index == currentIndex
+          //                         ? displayWidth * .03
+          //                         : 20,
+          //                   ),
+          //                   _bottomNavBarIcons[index],
+          //                 ],
+          //               ),
+          //             ],
+          //           ),
+          //         ),
+          //       ],
+          //     ),
+          //   ),
+          // ),
+          ListView.builder(
+            itemCount: 4, // updated to 4 items
             scrollDirection: Axis.horizontal,
-            padding: EdgeInsets.symmetric(horizontal: displayWidth * .06),
+            padding: EdgeInsets.symmetric(horizontal: displayWidth *.06),
             itemBuilder: (context, index) => InkWell(
               onTap: () {
                 setState(() {
@@ -75,14 +171,14 @@ class NavBarState extends State<NavBar> {
                     duration: const Duration(seconds: 1),
                     curve: Curves.fastLinearToSlowEaseIn,
                     width: index == currentIndex
-                        ? displayWidth * .32
-                        : displayWidth * .18,
+                        ? displayWidth *.23 // updated width calculation
+                        : displayWidth *.14, // updated width calculation
                     alignment: Alignment.center,
                     child: AnimatedContainer(
                       duration: const Duration(seconds: 1),
                       curve: Curves.fastLinearToSlowEaseIn,
-                      height: index == currentIndex ? displayWidth * .12 : 0,
-                      width: index == currentIndex ? displayWidth * .32 : 0,
+                      height: index == currentIndex? displayWidth *.10 : 0, // updated height calculation
+                      width: index == currentIndex? displayWidth *.24 : 0, // updated width calculation
                       decoration: BoxDecoration(
                         color: index == currentIndex
                             ? Colors.blueAccent.withOpacity(.2)
@@ -95,8 +191,8 @@ class NavBarState extends State<NavBar> {
                     duration: const Duration(seconds: 1),
                     curve: Curves.fastLinearToSlowEaseIn,
                     width: index == currentIndex
-                        ? displayWidth * .31
-                        : displayWidth * .24,
+                        ? displayWidth *.23 // updated width calculation
+                        : displayWidth *.20, // updated width calculation
                     alignment: Alignment.center,
                     child: Stack(
                       children: [
@@ -106,11 +202,11 @@ class NavBarState extends State<NavBar> {
                               duration: const Duration(seconds: 1),
                               curve: Curves.fastLinearToSlowEaseIn,
                               width: index == currentIndex
-                                  ? displayWidth * .12
+                                  ? displayWidth *.10 // updated width calculation
                                   : 0,
                             ),
                             AnimatedOpacity(
-                              opacity: index == currentIndex ? 1 : 0,
+                              opacity: index == currentIndex? 1 : 0,
                               duration: const Duration(seconds: 1),
                               curve: Curves.fastLinearToSlowEaseIn,
                               child: Text(
@@ -120,7 +216,7 @@ class NavBarState extends State<NavBar> {
                                 style: const TextStyle(
                                   color: Colors.blueAccent,
                                   fontWeight: FontWeight.w700,
-                                  fontSize: 12,
+                                  fontSize: 9,
                                 ),
                               ),
                             ),
@@ -132,7 +228,7 @@ class NavBarState extends State<NavBar> {
                               duration: const Duration(seconds: 1),
                               curve: Curves.fastLinearToSlowEaseIn,
                               width: index == currentIndex
-                                  ? displayWidth * .03
+                                  ? displayWidth *.02 // updated width calculation
                                   : 20,
                             ),
                             _bottomNavBarIcons[index],
@@ -144,7 +240,7 @@ class NavBarState extends State<NavBar> {
                 ],
               ),
             ),
-          ),
+          )
         ),
       ),
     );
@@ -153,11 +249,13 @@ class NavBarState extends State<NavBar> {
   final List<Image> _bottomNavBarIcons = [
     Image.asset('assets/icons/home.png', width: 32, height: 24),
     Image.asset('assets/icons/booking.png', width: 32, height: 24),
+    Image.asset('assets/icons/saves.png', width: 32, height: 24),
     Image.asset('assets/icons/profile.png', width: 32, height: 24),
   ];
 
   List<String> listOfStrings = [
     'Home',
+    'Booking',
     'Calender',
     'Account',
   ];
@@ -165,8 +263,8 @@ class NavBarState extends State<NavBar> {
   List<Widget> screens = [
     const HomePage(),
     // const HomePage2(),
+    const BookingPage(),
     const CelanderPage(),
-    // const MySavesPage(),
     const MyAccountPage(),
   ];
 

@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:test_footer/models/date.dart';
@@ -9,8 +8,6 @@ import '../items/roomItem.dart';
 import '../items/tentItem.dart';
 import '../models/room.dart';
 import '../models/tent.dart';
-import '/pages/room_view.dart';
-import '/pages/my_account.dart';
 // import 'notifications_page.dart';
 
 import 'package:http/http.dart' as http;
@@ -50,9 +47,16 @@ class _HomePageState extends State<HomePage> {
       final response = await http.get(Uri.parse(
           'https://apibeswp.bellybabe.site/api/room-amenities/${room.roomID}'));
       if (response.statusCode == 200) {
-        return (jsonDecode(response.body) as List)
-            .map((json) => RoomAmenity.fromJson(json))
-            .first;
+        // return (jsonDecode(response.body) as List)
+        //     .map((json) => RoomAmenity.fromJson(json))
+        //     .first;
+        final jsonData = jsonDecode(response.body);
+        if (jsonData is Map<String, dynamic>) {
+          final amenitiesJson = jsonData['amenities'] as List;
+          return amenitiesJson.map((json) => RoomAmenity.fromJson(json)).first;
+        } else {
+          throw Exception('Invalid JSON data');
+        }
       } else {
         throw Exception('Failed to load room amenities');
       }

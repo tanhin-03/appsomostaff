@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:test_footer/models/calenderBooking.dart';
 import 'dart:convert';
 import 'package:test_footer/models/customerdetail.dart';
 
-class CustomerDetailPage extends StatefulWidget {
-  final String bookingID;
+class BKCelanderDetailPage extends StatefulWidget {
+  final String dayID;
 
-  CustomerDetailPage({required this.bookingID});
+  BKCelanderDetailPage({required this.dayID});
 
   @override
-  _CustomerDetailPageState createState() => _CustomerDetailPageState();
+  _BKCelanderDetailPageState createState() => _BKCelanderDetailPageState();
 }
 
-class _CustomerDetailPageState extends State<CustomerDetailPage> {
-  CustomerDetail? bookingDetail;
+class _BKCelanderDetailPageState extends State<BKCelanderDetailPage> {
+  RoomData? bookingDetail;
 
   @override
   void initState() {
@@ -22,12 +23,12 @@ class _CustomerDetailPageState extends State<CustomerDetailPage> {
   }
 
   Future<void> _fetchBookingDetails() async {
-    final response = await http.get(Uri.parse('https://apibeswp.bellybabe.site/api/bookings/${widget.bookingID}'));
+    final response = await http.get(Uri.parse('https://apibeswp.bellybabe.site/api/dates/GetDatesByDayId/${widget.dayID}'));
 
     if (response.statusCode == 200) {
       final jsonData = jsonDecode(response.body);
       setState(() {
-        bookingDetail = CustomerDetail.fromJson(jsonData);
+        bookingDetail = RoomData.fromJson(jsonData);
       });
     } else {
       throw Exception('Failed to load booking details');
@@ -38,7 +39,7 @@ class _CustomerDetailPageState extends State<CustomerDetailPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Thông tin khách hàng'),
+        title: Text('Thông tin và trạng thái phòng'),
       ),
       body: bookingDetail != null
           ? Padding(
@@ -54,7 +55,7 @@ class _CustomerDetailPageState extends State<CustomerDetailPage> {
                 borderRadius: BorderRadius.all(Radius.circular(10)),
               ),
               padding: const EdgeInsets.all(20.0),
-              child: Text('Tên: ${bookingDetail!.customerName}',
+              child: Text('ID booking: ${bookingDetail!.dayID}',
                 style: TextStyle(fontSize: 20),),
             ),
             SizedBox(height: 10),
@@ -66,7 +67,7 @@ class _CustomerDetailPageState extends State<CustomerDetailPage> {
                 borderRadius: BorderRadius.all(Radius.circular(10)),
               ),
               padding: const EdgeInsets.all(20.0),
-              child: Text('SĐT: ${bookingDetail!.customerPhone}',
+              child: Text('ID phòng: ${bookingDetail!.roomID}',
                 style: TextStyle(fontSize: 20),),
             ),
             SizedBox(height: 10),
@@ -78,7 +79,7 @@ class _CustomerDetailPageState extends State<CustomerDetailPage> {
                 borderRadius: BorderRadius.all(Radius.circular(10)),
               ),
               padding: const EdgeInsets.all(20.0),
-              child: Text('Ngày: ${bookingDetail!.bookingDetail[0].dateInfo}',
+              child: Text('Tên phòng: ${bookingDetail!.roomName}',
                 style: TextStyle(fontSize: 20),),
             ),
             SizedBox(height: 10),
@@ -90,21 +91,21 @@ class _CustomerDetailPageState extends State<CustomerDetailPage> {
                 borderRadius: BorderRadius.all(Radius.circular(10)),
               ),
               padding: const EdgeInsets.all(20.0),
-              child: Text('Phòng: ${bookingDetail!.bookingDetail[0].roomInfo}',
+              child: Text('Ngày: ${bookingDetail!.date}',
+                style: TextStyle(fontSize: 20),),
+            ),
+            SizedBox(height: 10),
+            Container(
+              width: 400, // fixed width
+              constraints: BoxConstraints(maxWidth: 400), // fixed width
+              decoration: BoxDecoration(
+                border: Border.all(width: 1),
+                borderRadius: BorderRadius.all(Radius.circular(10)),
+              ),
+              padding: const EdgeInsets.all(20.0),
+              child: Text('Giá: ${bookingDetail!.roomPrice} VND',
                 style: TextStyle(fontSize: 20),
               ),
-            ),
-            SizedBox(height: 10),
-            Container(
-              width: 400, // fixed width
-              constraints: BoxConstraints(maxWidth: 400), // fixed width
-              decoration: BoxDecoration(
-                border: Border.all(width: 1),
-                borderRadius: BorderRadius.all(Radius.circular(10)),
-              ),
-              padding: const EdgeInsets.all(20.0),
-              child: Text('Tổng tiền: ${bookingDetail!.totalAmount}  VND',
-                style: TextStyle(fontSize: 20),),
             ),
             SizedBox(height: 10),
             Container(
@@ -115,12 +116,12 @@ class _CustomerDetailPageState extends State<CustomerDetailPage> {
                 borderRadius: BorderRadius.all(Radius.circular(10)),
                 color: Colors.white24,
               ),
-              padding: const EdgeInsets.all(15.0),
+              padding: const EdgeInsets.all(20.0),
               alignment: Alignment.center,
-              child: Text('${bookingDetail!.bookingStatus}',
+              child: Text('${bookingDetail!.roomStatus}',
                 style: TextStyle(
                   fontSize: 25,
-                  color: bookingDetail!.bookingStatus == 'Paid' ? Colors.blue : Colors.red,
+                  color: bookingDetail!.roomStatus == 'Available' ? Colors.green : Colors.red,
                 ),
               ),
             ),

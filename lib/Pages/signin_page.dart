@@ -25,15 +25,12 @@ class _SignInPageState extends State<SignInPage> {
 
   Future<void> _readJsonFile() async {
     final response =
-        await http.get(Uri.parse('https://jsonserver-two.vercel.app/account'));
-
+    await http.get(Uri.parse('https://apibeswp.bellybabe.site/api/login/GetAllAccount'));
     if (response.statusCode == 200) {
       final jsonData = jsonDecode(response.body);
-      final accountsJson =
-          jsonData['account']; // Get the "accounts" array from the JSON object
+      final accountsJson = jsonData as List; // Get the array from the JSON object
       setState(() {
-        _accounts =
-            (accountsJson as List).map((e) => Account.fromJson(e)).toList();
+        _accounts = accountsJson.map((e) => Account.fromJson(e)).toList();
       });
     } else {
       print('Failed to load accounts: ${response.statusCode}');
@@ -61,8 +58,12 @@ class _SignInPageState extends State<SignInPage> {
             ElevatedButton(
               onPressed: () {
                 Navigator.of(ctx).pop();
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const NavBar()));
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => NavBar(),
+                  ),
+                );
               },
               child: Text("OK"),
             ),

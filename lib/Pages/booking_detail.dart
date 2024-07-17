@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:test_footer/models/calenderBookings.dart';
-import 'package:test_footer/Pages/booking_celander_detail.dart';
+import 'package:test_footer/models/booking.dart';
+// import 'package:test_footer/Pages/booking_room.dart';
+import 'package:test_footer/models/customer.dart';
+import 'package:test_footer/Pages/customer_details.dart';
+import 'package:test_footer/test/BKDeatailtest.dart';
 import 'home_page.dart';
 
-class CelanderPage extends StatefulWidget {
-  const CelanderPage({super.key});
+class BookingPage extends StatefulWidget {
+  const BookingPage({super.key});
 
   @override
-  State<CelanderPage> createState() => _CelanderPageState();
+  State<BookingPage> createState() => _BookingPageState();
 }
 
-class _CelanderPageState extends State<CelanderPage> {
+class _BookingPageState extends State<BookingPage> {
   DateTime? selectedDate;
   List<dynamic> customers = [];
 
@@ -39,35 +42,24 @@ class _CelanderPageState extends State<CelanderPage> {
     setState(() {});
   }
 
-
-  Future<List<RoomData>> _filterCustomersByDate(DateTime date) async {
-    final selectedDate = date.toIso8601String().split('T').first;
-    final url = 'https://apibeswp.bellybabe.site/api/dates/GetDatesByDateRange?dateFrom=$selectedDate&dateTo=$selectedDate';
-
-    final response = await http.get(Uri.parse(url));
-
-    if (response.statusCode == 200) {
-      final jsonData = jsonDecode(response.body);
-      final bookings = jsonData.map<RoomData>((jsonRoomData) => RoomData.fromJson(jsonRoomData)).toList();
-      return bookings;
-    } else {
-      throw Exception('Failed to load bookings');
-    }
+  Future<List<Booking>> _filterCustomersByDate(DateTime date) async {
+    final response = await http.get(Uri.parse('https://apibeswp.bellybabe.site/api/bookings/GetAllBooking'));
+    final jsonData = jsonDecode(response.body);
+    final bookings = jsonData.map<Booking>((json) => Booking.fromJson(json)).toList();
+    final filteredBookings = bookings.where((booking) {
+      return date.day == booking.bookingDate.day &&
+          date.month == booking.bookingDate.month &&
+          date.year == booking.bookingDate.year;
+    }).toList();
+    return filteredBookings;
   }
 
-  Future<List<RoomData>> _getAllBookings() async {
-    final currentDate = DateTime.now().toIso8601String().split('T').first;
-    final url = 'https://apibeswp.bellybabe.site/api/dates/GetDatesByDateRange?dateFrom=$currentDate&dateTo=$currentDate';
-
-    final response = await http.get(Uri.parse(url));
-
-    if (response.statusCode == 200) {
-      final jsonData = jsonDecode(response.body);
-      final bookings = jsonData.map<RoomData>((jsonRoomData) => RoomData.fromJson(jsonRoomData)).toList();
-      return bookings;
-    } else {
-      throw Exception('Failed to load bookings');
-    }
+  Future<List<Booking>> _getAllBookings() async {
+    final response =
+    await http.get(Uri.parse('https://apibeswp.bellybabe.site/api/bookings/GetAllBooking'));
+    final jsonData = jsonDecode(response.body);
+    final bookings = List<Booking>.from(jsonData.map((jsonBooking) => Booking.fromJson(jsonBooking)));
+    return bookings;
   }
 
   @override
@@ -153,14 +145,15 @@ class _CelanderPageState extends State<CelanderPage> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => BKCelanderDetailPage(dayID: customer.dayID),
+                      builder: (context) => CustomerDetailPage(bookingID: customer.bookingID),
                     ),
                   );
                 },
-                child: Card(
-                  color: Colors.blueGrey[50],
+                child:
+                Card(
+                  color: Colors.blueGrey[50], // added background color
                   shape: RoundedRectangleBorder(
-                    side: BorderSide(width: 1, color: Colors.grey),
+                    side: BorderSide(width: 1, color: Colors.grey), // added border color
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Padding(
@@ -169,20 +162,18 @@ class _CelanderPageState extends State<CelanderPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Tên phòng : ${customer.roomName}',
+                          'Tên khách hàng : ${customer.customerName}',
                           style: TextStyle(fontSize: 20),
                         ),
                         SizedBox(height: 8),
                         Text(
-                          'Giá: ${customer.roomPrice}  VND',
+                          'Email: ${customer.customerEmail}',
                           style: TextStyle(fontSize: 20),
                         ),
                         SizedBox(height: 8),
                         Text(
-                          'Trạng thái: ${customer.roomStatus}',
-                          style: customer.roomStatus == 'Available'
-                              ? TextStyle(fontSize: 20, color: Colors.green)
-                              : TextStyle(fontSize: 20, color: Colors.red),
+                          'SĐT: ${customer.customerPhone}',
+                          style: TextStyle(fontSize: 20),
                         ),
                       ],
                     ),
