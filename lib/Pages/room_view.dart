@@ -25,7 +25,6 @@ class _ElysiumColonyState extends State<ElysiumColony> {
   ];
 
 
-
   double? _roomPrice;
 
   @override

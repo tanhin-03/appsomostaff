@@ -5,6 +5,7 @@ import 'package:test_footer/Pages/bottom_navbar.dart';
 import 'package:test_footer/Pages/signin_page.dart';
 import 'package:test_footer/firebase_api.dart';
 import 'package:test_footer/Pages/booking_detail.dart';
+import 'package:test_footer/Pages/bookroom.dart';
 import 'Pages/home_page.dart';
 // import 'Pages/signin_page.dart';
 import 'firebase_options.dart';
@@ -38,10 +39,12 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'App Somo Staff',
-      // home: SignInPage(),
+      home: SignInPage(),
       // home: HomePage(),
-      // home: CelanderPage(),
-      home: NavBar(),
+      // home: Scaffold(
+      //   body: CustomerForm(),
+      // )
+      // home: NavBar(),
     );
   }
 }

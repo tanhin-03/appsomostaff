@@ -2,10 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:test_footer/models/booking.dart';
-// import 'package:test_footer/Pages/booking_room.dart';
-import 'package:test_footer/models/customer.dart';
 import 'package:test_footer/Pages/customer_details.dart';
-import 'package:test_footer/test/BKDeatailtest.dart';
 import 'home_page.dart';
 
 class BookingPage extends StatefulWidget {

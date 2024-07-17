@@ -8,7 +8,6 @@ import '../items/roomItem.dart';
 import '../items/tentItem.dart';
 import '../models/room.dart';
 import '../models/tent.dart';
-// import 'notifications_page.dart';
 
 import 'package:http/http.dart' as http;
 

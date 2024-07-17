@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:test_footer/models/calenderBooking.dart';
 import 'dart:convert';
-import 'package:test_footer/models/customerdetail.dart';
+import 'package:test_footer/Pages/bookroom.dart';
 
 class BKCelanderDetailPage extends StatefulWidget {
   final String dayID;
@@ -118,13 +118,25 @@ class _BKCelanderDetailPageState extends State<BKCelanderDetailPage> {
               ),
               padding: const EdgeInsets.all(20.0),
               alignment: Alignment.center,
-              child: Text('${bookingDetail!.roomStatus}',
-                style: TextStyle(
-                  fontSize: 25,
-                  color: bookingDetail!.roomStatus == 'Available' ? Colors.green : Colors.red,
+              child: GestureDetector(
+                onTap: () {
+                  if (bookingDetail!.roomStatus == 'Available') {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => CustomerForm(roomID: '${bookingDetail!.roomID}',)),
+                    );
+                  } else {
+                    Navigator.pop(context);
+                  }
+                },
+                child: Text('${bookingDetail!.roomStatus}',
+                  style: TextStyle(
+                    fontSize: 25,
+                    color: bookingDetail!.roomStatus == 'Available'? Colors.green : Colors.red,
+                  ),
                 ),
               ),
-            ),
+            )
             // ...
           ],
         ),

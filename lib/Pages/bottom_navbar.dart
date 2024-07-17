@@ -12,8 +12,6 @@ class NavBar extends StatefulWidget {
   NavBarState createState() => NavBarState();
 }
 
-
-
 class NavBarState extends State<NavBar> {
   var currentIndex = 0;
 
@@ -57,98 +55,6 @@ class NavBarState extends State<NavBar> {
             borderRadius: BorderRadius.circular(20),
           ),
           child:
-          // ListView.builder(
-          //   itemCount: 3,
-          //   scrollDirection: Axis.horizontal,
-          //   padding: EdgeInsets.symmetric(horizontal: displayWidth * .06),
-          //   itemBuilder: (context, index) => InkWell(
-          //     onTap: () {
-          //       setState(() {
-          //         currentIndex = index;
-          //         _pageController.animateToPage(index,
-          //             duration: const Duration(milliseconds: 1),
-          //             curve: Curves.easeInOut);
-          //         HapticFeedback.lightImpact();
-          //       });
-          //     },
-          //     splashColor: Colors.transparent,
-          //     highlightColor: Colors.transparent,
-          //     child: Stack(
-          //       children: [
-          //         AnimatedContainer(
-          //           duration: const Duration(seconds: 1),
-          //           curve: Curves.fastLinearToSlowEaseIn,
-          //           width: index == currentIndex
-          //               ? displayWidth * .32
-          //               : displayWidth * .18,
-          //           alignment: Alignment.center,
-          //           child: AnimatedContainer(
-          //             duration: const Duration(seconds: 1),
-          //             curve: Curves.fastLinearToSlowEaseIn,
-          //             height: index == currentIndex ? displayWidth * .12 : 0,
-          //             width: index == currentIndex ? displayWidth * .32 : 0,
-          //             decoration: BoxDecoration(
-          //               color: index == currentIndex
-          //                   ? Colors.blueAccent.withOpacity(.2)
-          //                   : Colors.transparent,
-          //               borderRadius: BorderRadius.circular(16),
-          //             ),
-          //           ),
-          //         ),
-          //         AnimatedContainer(
-          //           duration: const Duration(seconds: 1),
-          //           curve: Curves.fastLinearToSlowEaseIn,
-          //           width: index == currentIndex
-          //               ? displayWidth * .31
-          //               : displayWidth * .24,
-          //           alignment: Alignment.center,
-          //           child: Stack(
-          //             children: [
-          //               Row(
-          //                 children: [
-          //                   AnimatedContainer(
-          //                     duration: const Duration(seconds: 1),
-          //                     curve: Curves.fastLinearToSlowEaseIn,
-          //                     width: index == currentIndex
-          //                         ? displayWidth * .12
-          //                         : 0,
-          //                   ),
-          //                   AnimatedOpacity(
-          //                     opacity: index == currentIndex ? 1 : 0,
-          //                     duration: const Duration(seconds: 1),
-          //                     curve: Curves.fastLinearToSlowEaseIn,
-          //                     child: Text(
-          //                       index == currentIndex
-          //                           ? listOfStrings[index]
-          //                           : '',
-          //                       style: const TextStyle(
-          //                         color: Colors.blueAccent,
-          //                         fontWeight: FontWeight.w700,
-          //                         fontSize: 12,
-          //                       ),
-          //                     ),
-          //                   ),
-          //                 ],
-          //               ),
-          //               Row(
-          //                 children: [
-          //                   AnimatedContainer(
-          //                     duration: const Duration(seconds: 1),
-          //                     curve: Curves.fastLinearToSlowEaseIn,
-          //                     width: index == currentIndex
-          //                         ? displayWidth * .03
-          //                         : 20,
-          //                   ),
-          //                   _bottomNavBarIcons[index],
-          //                 ],
-          //               ),
-          //             ],
-          //           ),
-          //         ),
-          //       ],
-          //     ),
-          //   ),
-          // ),
           ListView.builder(
             itemCount: 4, // updated to 4 items
             scrollDirection: Axis.horizontal,
@@ -255,8 +161,8 @@ class NavBarState extends State<NavBar> {
 
   List<String> listOfStrings = [
     'Home',
-    'Booking',
     'Calender',
+    'Booking',
     'Account',
   ];
 

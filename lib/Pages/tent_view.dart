@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../models/tent.dart';
-import '/pages/bottom_navbar.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
@@ -22,8 +21,6 @@ class _ElysiumColony2State extends State<ElysiumColony2> {
     'assets/images/tent4.jpg',
     'assets/images/tent5.jpg',
   ];
-
-
 
   double? _roomPrice;
 
